@@ -1,13 +1,39 @@
-import Button from './components/Button';
+import { RouterProvider } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
+
+import RootLayout from './components/Layouts/RootLayout';
+import HomePage from './components/Pages/HomePage';
+import SignInPage from './components/Pages/SignInPage';
+import SignUpPage from './components/Pages/SignUpPage';
+
+const router = createBrowserRouter([
+    {
+        path: '',
+        id: 'root',
+        element: <RootLayout />,
+        errorElement: <h1>Route Not Found.</h1>,
+        children: [
+            {
+                path: '',
+                id: 'home',
+                element: <HomePage />,
+            },
+        ],
+    },
+    {
+        path: 'signup',
+        element: <SignUpPage />,
+        errorElement: <h1>Route Not Found</h1>,
+    },
+    {
+        path: 'signin',
+        element: <SignInPage />,
+        errorElement: <h1>Route Not Found</h1>,
+    },
+]);
 
 function App() {
-    return (
-        <>
-            <Button>Click Meee</Button>
-            <Button>Click Meee</Button>
-            <Button>Click Meee</Button>;
-        </>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;
