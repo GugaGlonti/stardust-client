@@ -13,7 +13,7 @@ export default function RootNavigation() {
                 <NavButton to="/joker">Joker</NavButton>
                 <NavButton to="/roulette">Roulette</NavButton>
             </div>
-            <div className="flex justify-between gap-8 h-full">
+            <div className="flex justify-between items-center gap-8 h-full">
                 <Button
                     variant="test"
                     onClick={() => setSignedIn(current => !current)}>
@@ -21,12 +21,12 @@ export default function RootNavigation() {
                 </Button>
                 {!!signedIn ? (
                     <>
-                        <Button variant="primary">
-                            <NavLink to="/signin">Sign In</NavLink>
-                        </Button>
-                        <Button variant="primary">
-                            <NavLink to="/signup">Sign Up</NavLink>
-                        </Button>
+                        <NavLink to="/signin">
+                            <Button variant="primary">Sign In</Button>
+                        </NavLink>
+                        <NavLink to="/signup">
+                            <Button variant="primary">Sign Up</Button>
+                        </NavLink>
                     </>
                 ) : (
                     <>
