@@ -1,11 +1,10 @@
 import { Outlet } from 'react-router';
-import RootNavigation from '../UTIL/Navigation/RootNavigation';
+import RootNavigation from '../components/Navigation/RootNavigation';
 
 export default function RootLayout() {
     return (
         <>
             <RootNavigation />
-
             <Outlet />
         </>
     );

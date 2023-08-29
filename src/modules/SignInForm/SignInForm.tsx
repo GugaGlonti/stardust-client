@@ -1,5 +1,5 @@
 import logo from '../../assets/logo.png';
-import Button from '../../UTIL/Button/Button';
+import Button from '../../components/Button/Button';
 
 interface SignInFormProps {}
 
