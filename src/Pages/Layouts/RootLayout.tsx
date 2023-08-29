@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import RootNavigation from '../components/Navigation/RootNavigation';
+import RootNavigation from '../../modules/Navigation/RootNavigation';
 
 export default function RootLayout() {
     return (
