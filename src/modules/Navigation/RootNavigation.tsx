@@ -15,7 +15,7 @@ export default function RootNavigation() {
             </div>
             <div className="flex justify-between gap-8 h-full">
                 <Button
-                    variant="secondary"
+                    variant="test"
                     onClick={() => setSignedIn(current => !current)}>
                     toggle signin
                 </Button>
@@ -30,6 +30,8 @@ export default function RootNavigation() {
                     </>
                 ) : (
                     <>
+                        <NavButton to="/notification">Notifications</NavButton>
+                        <NavButton to="/messages">Messages</NavButton>
                         <NavButton to="/profile">Your Profile</NavButton>
                         <NavButton to="/settings">Settings</NavButton>
                     </>
