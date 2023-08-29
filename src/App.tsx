@@ -5,6 +5,10 @@ import RootLayout from './Pages/Layouts/RootLayout';
 import HomePage from './Pages/HomePage';
 import SignInPage from './Pages/SignInPage';
 import SignUpPage from './Pages/SignUpPage';
+import JokerPage from './Pages/JokerPage';
+import RoulettePage from './Pages/RoulettePage';
+import ProfilePage from './Pages/ProfilePage';
+import SettingsPage from './Pages/SettingsPage';
 
 const router = createBrowserRouter([
     {
@@ -17,6 +21,26 @@ const router = createBrowserRouter([
                 path: '',
                 id: 'home',
                 element: <HomePage />,
+            },
+            {
+                path: 'joker',
+                id: 'joker',
+                element: <JokerPage />,
+            },
+            {
+                path: 'roulette',
+                id: 'roulette',
+                element: <RoulettePage />,
+            },
+            {
+                path: 'profile',
+                id: 'profile',
+                element: <ProfilePage />,
+            },
+            {
+                path: 'settings',
+                id: 'settings',
+                element: <SettingsPage />,
             },
         ],
     },
