@@ -14,20 +14,20 @@ const router = createBrowserRouter([
         errorElement: <h1>Route Not Found.</h1>,
         children: [
             {
-                path: '',
+                path: 'home',
                 id: 'home',
                 element: <HomePage />,
             },
         ],
     },
     {
-        path: 'signup',
-        element: <SignUpPage />,
+        path: 'signin',
+        element: <SignInPage />,
         errorElement: <h1>Route Not Found</h1>,
     },
     {
-        path: 'signin',
-        element: <SignInPage />,
+        path: 'signup',
+        element: <SignUpPage />,
         errorElement: <h1>Route Not Found</h1>,
     },
 ]);

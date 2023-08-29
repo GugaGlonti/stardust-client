@@ -1,21 +1,15 @@
-import logo from '../../assets/logo.png';
 import Button from '../../components/Button/Button';
+import Header from './components/Header';
+import SignUpHere from './components/SignUpHere';
 
 interface SignInFormProps {}
 
 export default function SignInForm({ ...props }: SignInFormProps) {
     return (
         <>
-            <div className="flex min-h-full flex-1 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+            <div className="mt-32 flex min-h-full flex-1 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
                 <div className="w-full max-w-sm space-y-10 bg-red">
-                    <div>
-                        <img
-                            className="mx-auto h-64 w-auto"
-                            src={logo}
-                            alt="jolly logo"
-                        />
-                        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-                    </div>
+                    <Header />
                     <form
                         className="space-y-6"
                         action="#"
@@ -89,15 +83,7 @@ export default function SignInForm({ ...props }: SignInFormProps) {
                             </Button>
                         </div>
                     </form>
-
-                    <p className="text-center text-sm leading-6 text-gray-500">
-                        Not a member?{' '}
-                        <a
-                            href="_"
-                            className="font-semibold text-blue-400 hover:text-blue-400">
-                            Sign Up Here!
-                        </a>
-                    </p>
+                    <SignUpHere />
                 </div>
             </div>
         </>
