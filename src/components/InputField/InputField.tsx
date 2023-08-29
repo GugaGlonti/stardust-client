@@ -6,7 +6,9 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export default function InputField({ label, type = 'text', placeholder = '', ...props }: InputFieldProps) {
     return (
-        <div className="rounded-md m-1 px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+        <div
+            className="rounded-md m-1 px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600"
+            {...props}>
             {!!label && (
                 <label
                     htmlFor={label}
