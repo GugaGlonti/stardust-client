@@ -1,10 +1,12 @@
 interface SignUpFormInputProps {
+    value: string;
     label: string;
     id: string;
     placeholder?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function SignUpFormInput({ label, id, placeholder = '', ...props }: SignUpFormInputProps) {
+export default function SignUpFormInput({ label, id, placeholder = '', value, onChange, ...props }: SignUpFormInputProps) {
     return (
         <div {...props}>
             <label
@@ -14,6 +16,8 @@ export default function SignUpFormInput({ label, id, placeholder = '', ...props 
             </label>
             <div className="mt-2">
                 <input
+                    onChange={onChange}
+                    value={value}
                     id={id}
                     name={id}
                     type={id}

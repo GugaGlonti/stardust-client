@@ -1,10 +1,31 @@
+import { useState } from 'react';
 import Button from '../../components/Button/Button';
 import FormHeader from '../../components/FormHeader/FormHeader';
 import SignUpHere from './components/SignUpHere';
+import AuthService from '../../services/auth.service';
 
 interface SignInFormProps {}
 
+export interface SignInFormData {
+    identifier: string;
+    password: string;
+}
+
 export default function SignInForm({ ...props }: SignInFormProps) {
+    const [formData, setFormData] = useState<SignInFormData>({ identifier: '', password: '' });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({ ...prevData, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        await AuthService.singIn(formData);
+    };
+
+    const { identifier, password } = formData;
+
     return (
         <>
             <div className="mt-32 flex min-h-full flex-1 items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
@@ -14,20 +35,20 @@ export default function SignInForm({ ...props }: SignInFormProps) {
                     <div className="bg-blue-100 rounded p-16 mt-8 border-2 border-blue-200">
                         <form
                             className="space-y-6"
-                            action="#"
-                            method="POST">
+                            onSubmit={handleSubmit}>
                             <div className="relative -space-y-px rounded-md shadow-sm">
                                 <div className="pointer-events-none absolute inset-0 z-10 rounded-md ring-1 ring-inset ring-gray-300" />
                                 <div>
                                     <label
-                                        htmlFor="email-address"
+                                        htmlFor="identifier"
                                         className="sr-only">
                                         Email address
                                     </label>
                                     <input
-                                        id="email-address"
-                                        name="email"
-                                        type="email"
+                                        value={identifier}
+                                        onChange={handleChange}
+                                        id="identifier"
+                                        name="identifier"
                                         autoComplete="email"
                                         required
                                         className="relative block w-full rounded-t-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-100 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6"
@@ -41,6 +62,8 @@ export default function SignInForm({ ...props }: SignInFormProps) {
                                         Password
                                     </label>
                                     <input
+                                        value={password}
+                                        onChange={handleChange}
                                         id="password"
                                         name="password"
                                         type="password"

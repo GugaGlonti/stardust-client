@@ -1,10 +1,14 @@
 import NavButton from './components/NavButton';
 import Button from '../../components/Button/Button';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function RootNavigation() {
     const [signedIn, setSignedIn] = useState<boolean>(false);
+
+    useEffect(() => {
+        console.log('signedIn: ', signedIn);
+    }, [signedIn]);
 
     return (
         <div className="h-16 shadow-lg px-96 flex justify-between">
