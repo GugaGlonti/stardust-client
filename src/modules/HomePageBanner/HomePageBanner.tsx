@@ -13,7 +13,7 @@ export default function HomePageBanner() {
 
                         <NavLink
                             className="block mt-8 p-8 bg-white w-max rounded text-blue-400"
-                            to="signin">
+                            to="signup">
                             Get Started &#x2192;
                         </NavLink>
                     </div>

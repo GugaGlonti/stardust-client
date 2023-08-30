@@ -1,3 +1,9 @@
+import SignUpForm from '../modules/SignUpForm/SignUpForm';
+
 export default function SignUpPage() {
-    return <>Sign Up Page</>;
+    return (
+        <>
+            <SignUpForm />
+        </>
+    );
 }
