@@ -3,6 +3,7 @@ import Button from '../../components/Button/Button';
 import FormHeader from '../../components/FormHeader/FormHeader';
 import SignUpHere from './components/SignUpHere';
 import AuthService from '../../services/auth.service';
+import { useNavigate } from 'react-router';
 
 interface SignInFormProps {}
 
@@ -12,6 +13,7 @@ export interface SignInFormData {
 }
 
 export default function SignInForm({ ...props }: SignInFormProps) {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<SignInFormData>({ identifier: '', password: '' });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +23,9 @@ export default function SignInForm({ ...props }: SignInFormProps) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await AuthService.singIn(formData);
+        AuthService.singIn(formData);
+
+        navigate('/');
     };
 
     const { identifier, password } = formData;

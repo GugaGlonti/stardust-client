@@ -4,6 +4,7 @@ import Button from '../../components/Button/Button';
 import SignUpFormInput from './components/SignUpFormInput';
 import { useState } from 'react';
 import AuthService from '../../services/auth.service';
+import { useNavigate } from 'react-router';
 
 interface SignUpFormProps {}
 
@@ -16,6 +17,8 @@ export interface SignUpFormData {
 }
 
 export default function SignUpForm({ ...props }: SignUpFormProps) {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState<SignUpFormData>({ firstName: '', lastName: '', username: '', email: '', password: '' });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +29,8 @@ export default function SignUpForm({ ...props }: SignUpFormProps) {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         AuthService.signUp(formData);
+        // redirect to homepage
+        navigate('');
     };
 
     const { firstName, lastName, username, email, password } = formData;

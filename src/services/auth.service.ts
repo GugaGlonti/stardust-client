@@ -7,9 +7,7 @@ export default class AuthService {
         try {
             const response = await axios.post('http://localhost:3000/api/auth/signup', formData);
             console.log(response.data);
-        } catch (error) {
-            console.error(error);
-        }
+        } catch (error) {}
     }
 
     static async singIn(formData: SignInFormData) {
