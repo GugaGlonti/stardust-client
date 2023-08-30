@@ -26,11 +26,10 @@ export default function SignUpForm({ ...props }: SignUpFormProps) {
         setFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        AuthService.signUp(formData);
-        // redirect to homepage
-        navigate('');
+        if (await AuthService.signUp(formData)) return navigate('/signin');
+        return navigate('');
     };
 
     const { firstName, lastName, username, email, password } = formData;

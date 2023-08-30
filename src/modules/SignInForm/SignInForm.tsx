@@ -23,9 +23,8 @@ export default function SignInForm({ ...props }: SignInFormProps) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        AuthService.singIn(formData);
-
-        navigate('/');
+        if (await AuthService.singIn(formData)) return navigate('/');
+        return navigate('');
     };
 
     const { identifier, password } = formData;

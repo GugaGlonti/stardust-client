@@ -2,12 +2,17 @@ import { SignInFormData } from '../modules/SignInForm/SignInForm';
 import { SignUpFormData } from '../modules/SignUpForm/SignUpForm';
 import axios from 'axios';
 
+const url = 'http://localhost:3000/api';
+
 export default class AuthService {
     static async signUp(formData: SignUpFormData) {
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/signup', formData);
+            const response = await axios.post(url + '/signup', formData);
             console.log(response.data);
-        } catch (error) {}
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     static async singIn(formData: SignInFormData) {
@@ -16,9 +21,10 @@ export default class AuthService {
 
             console.log(data.token);
 
-            return localStorage.setItem('token', data.token);
+            localStorage.setItem('token', data.token);
+            return true;
         } catch (error) {
-            console.error(error);
+            return false;
         }
     }
 }
