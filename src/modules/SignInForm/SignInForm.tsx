@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Button from '../../components/Button/Button';
-import FormHeader from '../../components/FormHeader/FormHeader';
+import Button from '../../components/Button';
+import FormHeader from '../../components/FormHeader';
 import SignUpHere from './components/SignUpHere';
 import AuthService from '../../services/auth.service';
 import { useNavigate } from 'react-router';
