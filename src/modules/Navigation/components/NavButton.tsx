@@ -7,9 +7,9 @@ interface NavButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export default function NavButton({ to, children, className, ...props }: NavButtonProps) {
-    const baseClasses = className + ' border-b-4 h-full flex items-center p-4 w-max ';
-    const activeClasses = baseClasses + 'border-blue-400';
-    const inactiveClasses = baseClasses + ' border-gray-600';
+    const baseClasses = className + ' border-b-4 h-full flex items-center p-4 w-max hover:border-b-8 duration-200 ';
+    const activeClasses = baseClasses + 'text-primary border-primary border-b-8';
+    const inactiveClasses = baseClasses + ' border-secondary text-primary-dark hover:text-primary';
 
     return (
         <NavLink

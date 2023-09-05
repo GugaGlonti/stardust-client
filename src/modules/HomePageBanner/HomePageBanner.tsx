@@ -7,12 +7,12 @@ export default function HomePageBanner() {
         <>
             <div className={`${imageClass} flex justify-between items-center`}>
                 <div>
-                    <div className="p-32 bg-blue-400 rounded ml-16 -backdrop-hue-rotate-60">
-                        <h1 className="text-6xl text-blue-700">THIS IS THE BEST WEBSITE EVER</h1>
-                        <h1 className="text-4xl text-blue-500">EZ CASH HERE</h1>
+                    <div className="p-32 bg-primary rounded ml-16 -backdrop-hue-rotate-60">
+                        <h1 className="text-6xl text-gold-900">THIS IS THE BEST WEBSITE EVER</h1>
+                        <h1 className="text-4xl text-gold-700">EZ CASH HERE</h1>
 
                         <NavLink
-                            className="block mt-8 p-8 bg-white w-max rounded text-blue-400"
+                            className="block mt-8 p-8 bg-white w-max rounded text-primary hover:bg-primary-dark hover:text-white duration-200"
                             to="signup">
                             Get Started &#x2192;
                         </NavLink>

@@ -1,16 +1,18 @@
 import ProfilePicture from '../../../assets/svg/ProfilePicture';
+import { ProfileData } from '../../../services/user.service';
 
 interface ProfileHeaderProps {
+    profileData: ProfileData;
     className?: string;
 }
 
-const username = 'gugaglonti';
-const firstName = 'Guga';
-const lastName = 'Glonti';
+export default function ProfileHeader({ profileData, className, ...props }: ProfileHeaderProps) {
+    const { username, firstName, lastName } = profileData;
 
-export default function ProfileHeader({ className, ...props }: ProfileHeaderProps) {
     return (
-        <div className={`mx-16 mt-16 p-8 bg-blue-400 rounded-2xl ${className}`}>
+        <div
+            className={`mx-16 mt-16 p-8 bg-window rounded-2xl ${className}`}
+            {...props}>
             <div className="flex items-end">
                 <ProfilePicture
                     height="96"
