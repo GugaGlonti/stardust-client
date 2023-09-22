@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         loader: getLoggedInUser,
         children: [
             /** @page Home Page */
-            {   path: '',             id: 'home',         element: <HomePage /> },
+            {   path: '',             id: 'home',         element: <HomePage />},
 
             /** @page Joker Game */
             {   path: 'joker',        id: 'joker',        element: <JokerPage /> },
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
             {   path: 'messages',     id: 'messages',     element: <MessagesPage /> },
 
             /** @page Profile Page */
-            {   path: ':username',      id: 'profile',      element: <ProfilePage />,
+            {   path: ':username',      id: 'profile',    element: <ProfilePage />,
                 loader: loadProfileInfo },
 
             /** @page Settings Page */
@@ -46,10 +46,10 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-    return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 function ErrorBoundary() {
-    const error = useRouteError() as Error;
-    return <div className="text-xl">{error.message}</div>;
+  const error = useRouteError() as Error;
+  return <div className='text-xl'>{error.message}</div>;
 }

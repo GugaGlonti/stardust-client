@@ -1,3 +1,3 @@
 export default function JokerPage() {
-    return <>JokerPage</>;
+  return <>JokerPage</>;
 }

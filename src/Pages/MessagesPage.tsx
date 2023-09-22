@@ -1,3 +1,3 @@
 export default function MessagesPage() {
-    return <>Messages Page</>;
+  return <>Messages Page</>;
 }
