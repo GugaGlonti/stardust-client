@@ -1,4 +1,5 @@
 import axios from 'axios';
+import AuthService from './auth.service';
 
 const axiosService = axios.create({
   baseURL: 'http://localhost:3000/api',
@@ -7,9 +8,8 @@ const axiosService = axios.create({
 
 axiosService.interceptors.request.use(
   config => {
-    console.log('here2');
     const token = localStorage.getItem('token');
-    console.log(token);
+
     if (token) {
       config.headers['Authorization'] = 'Bearer ' + token;
     }
@@ -24,7 +24,9 @@ axiosService.interceptors.response.use(
   error => {
     if (error.response.status === 401) {
       localStorage.removeItem('token');
-      window.location.href = '/signin';
+      const username = AuthService.me();
+
+      if (window.location.pathname === '/' + username) window.location.href = '/';
     }
     return Promise.reject(error);
   }

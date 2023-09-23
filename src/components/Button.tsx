@@ -8,8 +8,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export default function Button({ children, variant = 'primary', className = '', type = 'button', disabled = false, onClick, ...props }: ButtonProps) {
-  // ================================= //
-  /**@REMOVE Multi Purpose Test Button */
+  // TODO: REMOVE THIS
+  /** @REMOVE Multi Purpose Test Button */
   if (variant === 'test') {
     return (
       <button
@@ -23,18 +23,16 @@ export default function Button({ children, variant = 'primary', className = '', 
       </button>
     );
   }
-  // ================================= //
-
-  const primaryClasses = 'text-primary border-primary hover:bg-primary-light hover:text-primary-dark';
-  const secondaryClasses = 'text-secondary border-secondary-dark hover:bg-secondary-dark';
 
   return (
     <button
       onClick={onClick}
       type={type}
       disabled={disabled}
-      className={`px-3.5 py-2.5 border-2 duration-200 rounded hover:text-white
-            ${variant === 'primary' ? ' first-letter:text-primary border-primary hover:bg-primary-light hover:text-primary-dark' : 'text-secondary border-secondary-dark hover:bg-secondary-dark'} ${className}`}
+      //prettier-ignore
+      className={`${className} px-3.5 py-2.5 border-2 duration-200 rounded hover:text-white ${variant === 'primary' 
+      ? 'text-primary   border-primary        hover:bg-primary-light    hover:text-primary-dark' 
+      : 'text-secondary border-secondary-dark hover:bg-secondary-dark'}`}
       {...props}>
       {children}
     </button>

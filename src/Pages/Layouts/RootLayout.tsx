@@ -14,6 +14,11 @@ export default function RootLayout() {
 }
 
 export const getLoggedInUser: LoaderFunction = async ({ request, params }) => {
-  const response = await axiosService.get('/auth/me');
-  return response.data;
+  try {
+    const response = await axiosService.get('/auth/me');
+    return response.data;
+  } catch (error) {
+    console.log('not logged in; AuthService.getLoggedInUser()');
+  }
+  return null;
 };

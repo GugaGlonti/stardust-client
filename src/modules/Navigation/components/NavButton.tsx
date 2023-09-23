@@ -6,14 +6,15 @@ interface NavButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   to: string;
 }
 
-export default function NavButton({ to, children, className, ...props }: NavButtonProps) {
+export default function NavButton({ to, children, className }: NavButtonProps) {
   const baseClasses = className + ' border-b-4 h-full flex items-center p-4 w-max hover:border-b-8 duration-200 ';
-  const activeClasses = baseClasses + 'text-primary border-primary border-b-8';
-  const inactiveClasses = baseClasses + ' border-secondary text-primary-dark hover:text-primary';
 
   return (
     <NavLink
-      className={({ isActive }) => (isActive ? activeClasses : inactiveClasses)}
+      //prettier-ignore
+      className={({ isActive }) => (isActive
+      ? `${baseClasses} text-secondary-dark border-secondary-dark border-b-8`
+      : `${baseClasses} border-primary text-primary-dark hover:text-primary`)}
       to={to}>
       {children}
     </NavLink>
