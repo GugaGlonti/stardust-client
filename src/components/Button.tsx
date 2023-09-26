@@ -30,7 +30,7 @@ export default function Button({ children, variant = 'primary', className = '', 
       type={type}
       disabled={disabled}
       //prettier-ignore
-      className={`${className} px-3.5 py-2.5 border-2 duration-200 rounded hover:text-white ${variant === 'primary' 
+      className={`px-3.5 py-2.5 border-2 duration-200 rounded hover:text-white ${className} ${variant === 'primary' 
       ? 'text-primary   border-primary        hover:bg-primary-light    hover:text-primary-dark' 
       : 'text-secondary border-secondary-dark hover:bg-secondary-dark'}`}
       {...props}>
