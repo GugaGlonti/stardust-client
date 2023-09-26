@@ -11,7 +11,7 @@ export default function ProfileHeader({ profileData, className, ...props }: Prof
 
   return (
     <div
-      className={`mx-16 mt-16 p-8 bg-window rounded-2xl ${className}`}
+      className={`flex justify-between mx-16 mt-16 p-8 bg-window rounded-2xl ${className}`}
       {...props}>
       <div className='flex items-end'>
         <ProfilePicture
@@ -26,6 +26,8 @@ export default function ProfileHeader({ profileData, className, ...props }: Prof
           <h1 className='text-green-400'>@{username}</h1>
         </div>
       </div>
+
+      <div className='flex items-end'></div>
     </div>
   );
 }

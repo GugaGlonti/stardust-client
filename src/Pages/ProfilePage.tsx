@@ -13,8 +13,14 @@ export default function ProfilePage() {
         profileData={profiledata}
         className='col-span-full'
       />
-      <ProfileAside className='col-start-2 col-span-2' />
-      <ProfileMain className='col-span-4' />
+      <ProfileAside
+        profileData={profiledata}
+        className='col-start-2 col-span-2'
+      />
+      <ProfileMain
+        profileData={profiledata}
+        className='col-span-4'
+      />
     </div>
   );
 }

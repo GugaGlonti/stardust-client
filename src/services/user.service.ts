@@ -10,8 +10,15 @@ export interface ProfileData {
   username: string;
   firstName: string;
   lastName: string;
+  authLevel: string;
   balance: number;
-  password: string;
+  dateOfBirth: string;
+  phoneNumber: string;
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  profilePicture: string;
 }
 
 export default class UserService {
