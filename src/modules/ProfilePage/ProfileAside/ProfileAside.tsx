@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
-import { ProfileData } from '../../../services/user.service';
+import UserService, { ProfileData } from '../../../services/user.service';
 
 import EditIcon from '../../../assets/svg/EditIcon';
 
@@ -8,7 +8,6 @@ import { EmailIcon } from './components/icons/EmailIcon';
 import { BirthDayIcon } from './components/icons/BirthDayIcon';
 import { PhoneIcon } from './components/icons/PhoneIcon';
 import { PinIcon } from './components/icons/PinIcon';
-import { IntroInputField } from './components/IntroInputField';
 
 import IntroItem from './components/IntroItem';
 
@@ -36,28 +35,20 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
   const stateRef = useRef<HTMLInputElement>(null);
   const countryRef = useRef<HTMLInputElement>(null);
 
-  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
-    console.log(emailRef);
-
-    const email = emailRef.current?.value;
-    const dateOfBirth = dateOfBirthRef.current?.value;
-    const phoneNumber = phoneNumberRef.current?.value;
-    const address = addressRef.current?.value;
-    const city = cityRef.current?.value;
-    const state = stateRef.current?.value;
-    const country = countryRef.current?.value;
-
-    console.log({
-      email,
-      dateOfBirth,
-      phoneNumber,
-      address,
-      city,
-      state,
-      country,
-    });
-
+  async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const email = emailRef.current?.value || '';
+    const dateOfBirth = dateOfBirthRef.current?.value || '';
+    const phoneNumber = phoneNumberRef.current?.value || '';
+    const address = addressRef.current?.value || '';
+    const city = cityRef.current?.value || '';
+    const state = stateRef.current?.value || '';
+    const country = countryRef.current?.value || '';
+
+    console.log({ email, dateOfBirth, phoneNumber, address, city, state, country });
+
+    await UserService.updateProfile({ email, dateOfBirth, phoneNumber, address, city, state, country });
   }
 
   const displayedContent = !editing ? (
@@ -72,41 +63,50 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
     </div>
   ) : (
     <form onSubmit={submitHandler}>
-      <IntroInputField
-        label='Email'
-        ref={emailRef}>
-        {email}
-      </IntroInputField>
-      <IntroInputField
-        label='Date Of Birth'
-        ref={dateOfBirthRef}>
-        {dateOfBirth}
-      </IntroInputField>
-      <IntroInputField
-        label='PhoneNumber'
-        ref={phoneNumberRef}>
-        {phoneNumber}
-      </IntroInputField>
-      <IntroInputField
-        label='Address'
-        ref={addressRef}>
-        {address}
-      </IntroInputField>
-      <IntroInputField
-        label='City'
-        ref={cityRef}>
-        {city}
-      </IntroInputField>
-      <IntroInputField
-        label='State'
-        ref={stateRef}>
-        {state}
-      </IntroInputField>
-      <IntroInputField
-        label='Country'
-        ref={countryRef}>
-        {country}
-      </IntroInputField>
+      <>
+        <IntroItemInputField
+          label='email'
+          type='email'
+          ref={emailRef}
+          defaultValue={email}
+        />
+        <IntroItemInputField
+          label='date of birth'
+          type='date'
+          ref={dateOfBirthRef}
+          defaultValue={dateOfBirth}
+        />
+        <IntroItemInputField
+          label='phone number'
+          type='tel'
+          ref={phoneNumberRef}
+          defaultValue={phoneNumber}
+        />
+        <IntroItemInputField
+          label='address'
+          ref={addressRef}
+          type='text'
+          defaultValue={address}
+        />
+        <IntroItemInputField
+          label='city'
+          ref={cityRef}
+          type='text'
+          defaultValue={city}
+        />
+        <IntroItemInputField
+          label='state'
+          ref={stateRef}
+          type='text'
+          defaultValue={state}
+        />
+        <IntroItemInputField
+          label='country'
+          ref={countryRef}
+          type='text'
+          defaultValue={country}
+        />
+      </>
       <div className='w-full flex justify-center'>
         <Button
           className='w-32'
@@ -130,3 +130,33 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
     </div>
   );
 }
+
+interface IntroItemInputFieldProps {
+  label: string;
+  type?: 'text' | 'password' | 'email' | 'date' | 'tel';
+  placeholder?: string;
+  defaultValue?: string;
+}
+
+type Ref = HTMLButtonElement | HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
+// const IntroItemInputField = React.forwardRef(({ label, type = 'text', placeholder = '', defaultValue = '', ...props }: IntroItemInputFieldProps) => {
+
+const IntroItemInputField = React.forwardRef<Ref, IntroItemInputFieldProps>((props, ref: any) => {
+  const { label, type = 'text', placeholder = '', defaultValue = '' } = props;
+
+  return (
+    <div
+      {...props}
+      className='p-2'>
+      <label htmlFor={label}>{label}</label>
+      <input
+        ref={ref}
+        type={type}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
+        className='w-full border-0 p-0 text-gray-900 placeholder-text-gray-400'
+      />
+    </div>
+  );
+});
