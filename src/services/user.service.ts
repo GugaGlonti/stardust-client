@@ -4,6 +4,12 @@ const url = 'http://localhost:3000/api/users/';
 
 // const users = axios.create({ baseURL: url, timeout: 1000 });
 
+const users = axios.create({
+  baseURL: url,
+  timeout: 1000,
+  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+});
+
 export interface ProfileData {
   id: number;
   email: string;
