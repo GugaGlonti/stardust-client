@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { NavLink, useRouteLoaderData } from 'react-router-dom';
+import { ReactNode, useState } from 'react';
+import { NavLink, useNavigate, useRouteLoaderData } from 'react-router-dom';
 
 import NavButton from './components/NavButton';
 import ColorBar from '../../components/UTIL/ColorBar';
@@ -31,13 +31,30 @@ export default function RootNavigation() {
         </div>
 
         {/** @Navigation right side */}
-        <div className='flex justify-between items-center gap-4 h-full'>{!!isSignedIn ? signedInNavigation(username) : signedOutNavigation}</div>
+        <div className='flex justify-between items-center gap-4 h-full'>{!!isSignedIn ? <SignedInNavigation username={username} /> : signedOutNavigation}</div>
       </div>
     </>
   );
 }
 
-const signedInNavigation = function (username: string): ReactNode {
+interface SignedInNavigationProps {
+  username: string;
+}
+
+const SignedInNavigation = function ({ username }: SignedInNavigationProps) {
+  const navigate = useNavigate();
+
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+
+  function signOutHandler() {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
+
+  function toProfilePage() {
+    navigate(`/${username}`);
+  }
+
   return (
     <>
       <NavButton to='/notification'>
@@ -48,7 +65,29 @@ const signedInNavigation = function (username: string): ReactNode {
         <ChatIcon />
       </NavButton>
 
-      <NavButton to={`/${username}`}>{username}</NavButton>
+      <div
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}>
+        <NavButton to={`/${username}`}>{username}</NavButton>
+
+        {isHovering && (
+          <>
+            <div className='h-4' />
+            <div className='absolute bg-window rounded-md p-2'>
+              <div
+                className='m-1 p-1'
+                onClick={toProfilePage}>
+                <h1>{username}</h1>
+              </div>
+              <div
+                className='m-1 p-1'
+                onClick={signOutHandler}>
+                <h1>Sign Out</h1>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
 
       <NavButton to='/settings'>
         <SettingsIcon />
