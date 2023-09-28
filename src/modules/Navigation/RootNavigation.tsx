@@ -73,14 +73,14 @@ const SignedInNavigation = function ({ username }: SignedInNavigationProps) {
         {isHovering && (
           <>
             <div className='h-4' />
-            <div className='absolute bg-window rounded-md p-2'>
+            <div className='absolute bg-window rounded-md p-2 shadow-xl'>
               <div
-                className='m-1 p-1'
+                className='m-1 p-2 hover:bg-secondary-dark rounded-md'
                 onClick={toProfilePage}>
                 <h1>{username}</h1>
               </div>
               <div
-                className='m-1 p-1'
+                className='m-1 p-2 hover:bg-secondary-dark rounded-md'
                 onClick={signOutHandler}>
                 <h1>Sign Out</h1>
               </div>
