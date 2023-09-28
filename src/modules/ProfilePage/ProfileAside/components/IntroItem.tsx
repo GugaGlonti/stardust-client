@@ -11,7 +11,7 @@ export default function IntroItem({ className, children, icon, ...props }: Intro
 
   return (
     <div
-      className={`flex text-sm gap-2 ${className}`}
+      className={`flex text-sm gap-2 p-2 ${className}`}
       {...props}>
       {icon}
       {children}

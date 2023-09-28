@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useRouteLoaderData } from 'react-router';
 
 import UserService, { ProfileData } from '../../../services/user.service';
 
@@ -8,9 +9,9 @@ import { EmailIcon } from './components/icons/EmailIcon';
 import { BirthDayIcon } from './components/icons/BirthDayIcon';
 import { PhoneIcon } from './components/icons/PhoneIcon';
 import { PinIcon } from './components/icons/PinIcon';
+import { IntroItemInputField } from './components/IntroItemInputField';
 
 import IntroItem from './components/IntroItem';
-
 import Button from '../../../components/Button';
 
 interface ProfileAsideProps {
@@ -19,13 +20,20 @@ interface ProfileAsideProps {
 }
 
 export default function ProfileAside({ className, profileData, ...props }: ProfileAsideProps) {
+  const loggedInUser = useRouteLoaderData('root') as ProfileData;
+
   const [editing, setEditing] = useState<boolean>(false);
 
-  function editHandler() {
-    setEditing(cur => !cur);
-  }
+  const { email, dateOfBirth, phoneNumber, address, city, country, state, username } = profileData;
 
-  const { email, dateOfBirth, phoneNumber, address, city, country, state } = profileData;
+  const isCurrentUser = loggedInUser.username === username;
+
+  let birthday = '';
+  try {
+    birthday = new Date(dateOfBirth).toISOString().split('T')[0];
+  } catch (error) {}
+
+  const editHandler = () => setEditing(cur => !cur);
 
   const emailRef = useRef<HTMLInputElement>(null);
   const dateOfBirthRef = useRef<HTMLInputElement>(null);
@@ -54,54 +62,56 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
   const displayedContent = !editing ? (
     <div className='text-gray-500'>
       <IntroItem icon={<EmailIcon />}>{email}</IntroItem>
-      <IntroItem icon={<BirthDayIcon />}>{dateOfBirth}</IntroItem>
+      <IntroItem icon={<BirthDayIcon />}>{birthday}</IntroItem>
       <IntroItem icon={<PhoneIcon />}>{phoneNumber}</IntroItem>
       <IntroItem icon={<PinIcon />}>{address}</IntroItem>
-      <IntroItem>{city}</IntroItem>
-      <IntroItem>{state}</IntroItem>
-      <IntroItem>{country}</IntroItem>
+      <IntroItem>
+        {city}
+        {state && `, ${state}`}
+        {country && `, ${country}`}
+      </IntroItem>
     </div>
   ) : (
     <form onSubmit={submitHandler}>
       <>
         <IntroItemInputField
-          label='email'
+          label='Email'
           type='email'
           ref={emailRef}
           defaultValue={email}
         />
         <IntroItemInputField
-          label='date of birth'
+          label='Date of Birth'
           type='date'
           ref={dateOfBirthRef}
-          defaultValue={dateOfBirth}
+          defaultValue={birthday}
         />
         <IntroItemInputField
-          label='phone number'
+          label='Phone Number'
           type='tel'
           ref={phoneNumberRef}
           defaultValue={phoneNumber}
         />
         <IntroItemInputField
-          label='address'
+          label='Address'
           ref={addressRef}
           type='text'
           defaultValue={address}
         />
         <IntroItemInputField
-          label='city'
+          label='City'
           ref={cityRef}
           type='text'
           defaultValue={city}
         />
         <IntroItemInputField
-          label='state'
+          label='State'
           ref={stateRef}
           type='text'
           defaultValue={state}
         />
         <IntroItemInputField
-          label='country'
+          label='Country'
           ref={countryRef}
           type='text'
           defaultValue={country}
@@ -119,44 +129,18 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
   );
 
   return (
-    <div className={`m-16 p-8 bg-window rounded-2xl ${className}`}>
+    <div
+      className={`m-16 p-8 bg-window rounded-2xl ${className}`}
+      {...props}>
       <div className='flex justify-between mb-4'>
         <h1>Intro</h1>
-        <div onClick={editHandler}>
-          <EditIcon height='24' />
-        </div>
+        {isCurrentUser && (
+          <div onClick={editHandler}>
+            <EditIcon height='24' />
+          </div>
+        )}
       </div>
       <div className='text-gray-500'>{displayedContent}</div>
     </div>
   );
 }
-
-interface IntroItemInputFieldProps {
-  label: string;
-  type?: 'text' | 'password' | 'email' | 'date' | 'tel';
-  placeholder?: string;
-  defaultValue?: string;
-}
-
-type Ref = HTMLButtonElement | HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
-
-// const IntroItemInputField = React.forwardRef(({ label, type = 'text', placeholder = '', defaultValue = '', ...props }: IntroItemInputFieldProps) => {
-
-const IntroItemInputField = React.forwardRef<Ref, IntroItemInputFieldProps>((props, ref: any) => {
-  const { label, type = 'text', placeholder = '', defaultValue = '' } = props;
-
-  return (
-    <div
-      {...props}
-      className='p-2'>
-      <label htmlFor={label}>{label}</label>
-      <input
-        ref={ref}
-        type={type}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-        className='w-full border-0 p-0 text-gray-900 placeholder-text-gray-400'
-      />
-    </div>
-  );
-});
