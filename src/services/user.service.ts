@@ -48,7 +48,7 @@ export default class UserService {
 
   static async updateProfile(data: updateProfileData) {
     try {
-      console.log('put request');
+      return (await users.put('/updateProfile', data)).data;
     } catch (error) {
       throw new Error('Unable to update profile');
     }

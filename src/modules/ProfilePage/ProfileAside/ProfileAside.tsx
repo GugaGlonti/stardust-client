@@ -26,7 +26,7 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
 
   const { email, dateOfBirth, phoneNumber, address, city, country, state, username } = profileData;
 
-  const isCurrentUser = loggedInUser.username === username;
+  const isCurrentUser = loggedInUser?.username === username;
 
   let birthday = '';
   try {
@@ -57,6 +57,8 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
     console.log({ email, dateOfBirth, phoneNumber, address, city, state, country });
 
     await UserService.updateProfile({ email, dateOfBirth, phoneNumber, address, city, state, country });
+
+    window.location.reload();
   }
 
   const displayedContent = !editing ? (
