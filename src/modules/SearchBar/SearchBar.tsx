@@ -25,9 +25,8 @@ export default function SearchBar() {
     setFocused(true);
   }
 
-  //TODO: MAKE THIS LESS SCUFFED
   function exitFocus() {
-    setTimeout(() => setFocused(false), 200);
+    setFocused(false);
   }
 
   function clearSearch() {
