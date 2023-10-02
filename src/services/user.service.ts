@@ -25,7 +25,7 @@ export interface ProfileData {
   profilePicture: string;
 }
 
-interface updateProfileData {
+interface UpdateProfileData {
   email: string;
   dateOfBirth: string;
   phoneNumber: string;
@@ -35,11 +35,11 @@ interface updateProfileData {
   country: string;
 }
 
-interface searchUsersData {
+export interface SearchUsersData {
   firstName: string;
   lastName: string;
   username: string;
-  profilePicture: string;
+  email: string;
 }
 
 export default class UserService {
@@ -47,22 +47,22 @@ export default class UserService {
     try {
       return (await axios.get(url + username)).data;
     } catch (error) {
-      throw new Error('User Not Found');
+      throw new Error('User Not Found | UserService');
     }
   }
 
-  static async updateProfile(data: updateProfileData) {
+  static async updateProfile(data: UpdateProfileData) {
     console.log('here');
     try {
       return (await users.put('/updateProfile', data)).data;
     } catch (error) {
-      throw new Error('Unable to update profile');
+      throw new Error('Unable to update profile | UserService');
     }
   }
 
   static async searchUsers(query: string) {
     try {
-      return (await users.get('/search', { params: { query } })).data as searchUsersData[];
+      return (await users.get('/search', { params: { query } })).data as SearchUsersData[];
     } catch (error) {
       throw new Error('Unable to search users | UserService');
     }

@@ -10,13 +10,13 @@ import SettingsIcon from '../../assets/svg/SettingsIcon';
 import ChatIcon from '../../assets/svg/ChatIcon';
 
 import { ProfileData } from '../../services/user.service';
-import SearchBar from '../../components/SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default function RootNavigation() {
   const loggedInUser = useRouteLoaderData('root') as ProfileData;
   const username = loggedInUser?.username;
 
-  const isSignedIn = !!loggedInUser;
+  const isSignedIn: boolean = !!loggedInUser;
 
   return (
     <>
@@ -61,6 +61,14 @@ const SignedInNavigation = function ({ username }: SignedInNavigationProps) {
     navigate(`/${username}`);
   }
 
+  function enterHover() {
+    setIsHovering(true);
+  }
+
+  function leaveHover() {
+    setIsHovering(false);
+  }
+
   return (
     <>
       <NavButton to='/notification'>
@@ -72,13 +80,13 @@ const SignedInNavigation = function ({ username }: SignedInNavigationProps) {
       </NavButton>
 
       <div
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}>
+        onMouseEnter={enterHover}
+        onMouseLeave={leaveHover}>
         <NavButton to={`/${username}`}>{username}</NavButton>
 
-        {isHovering && (
+        {!!isHovering && (
           <>
-            <div className='h-4' />
+            <div className='h-0' />
             <div className='absolute bg-window rounded-md p-2 shadow-xl'>
               <div
                 className='m-1 p-2 hover:bg-secondary-dark rounded-md'
