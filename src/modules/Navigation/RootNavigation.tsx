@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { NavLink, useNavigate, useRouteLoaderData } from 'react-router-dom';
 
 import NavButton from './components/NavButton';
@@ -10,6 +10,7 @@ import SettingsIcon from '../../assets/svg/SettingsIcon';
 import ChatIcon from '../../assets/svg/ChatIcon';
 
 import { ProfileData } from '../../services/user.service';
+import SearchBar from '../../components/SearchBar';
 
 export default function RootNavigation() {
   const loggedInUser = useRouteLoaderData('root') as ProfileData;
@@ -22,15 +23,20 @@ export default function RootNavigation() {
       {/** @ColoBar */}
       <ColorBar />
 
-      <div className='h-16 shadow-lg px-96 flex justify-between'>
-        {/** @Navigation left side */}
+      <div className='h-16 shadow-lg px-96 flex justify-between items-center'>
+        {/** @Navigation left */}
         <div className='flex justify-between gap-4 h-full'>
           <NavButton to=''>Home</NavButton>
           <NavButton to='/joker'>Joker</NavButton>
           <NavButton to='/roulette'>Roulette</NavButton>
         </div>
 
-        {/** @Navigation right side */}
+        {/** @Navigation middle */}
+        <div className='pt-3 w-1/3'>
+          <SearchBar />
+        </div>
+
+        {/** @Navigation right */}
         <div className='flex justify-between items-center gap-4 h-full'>{!!isSignedIn ? <SignedInNavigation username={username} /> : signedOutNavigation}</div>
       </div>
     </>

@@ -2,8 +2,6 @@ import axios from 'axios';
 
 const url = 'http://localhost:3000/api/users/';
 
-// const users = axios.create({ baseURL: url, timeout: 1000 });
-
 const users = axios.create({
   baseURL: url,
   timeout: 1000,
@@ -37,6 +35,13 @@ interface updateProfileData {
   country: string;
 }
 
+interface searchUsersData {
+  firstName: string;
+  lastName: string;
+  username: string;
+  profilePicture: string;
+}
+
 export default class UserService {
   static async getProfile(username: string) {
     try {
@@ -47,10 +52,19 @@ export default class UserService {
   }
 
   static async updateProfile(data: updateProfileData) {
+    console.log('here');
     try {
       return (await users.put('/updateProfile', data)).data;
     } catch (error) {
       throw new Error('Unable to update profile');
+    }
+  }
+
+  static async searchUsers(query: string) {
+    try {
+      return (await users.get('/search', { params: { query } })).data as searchUsersData[];
+    } catch (error) {
+      throw new Error('Unable to search users | UserService');
     }
   }
 }
