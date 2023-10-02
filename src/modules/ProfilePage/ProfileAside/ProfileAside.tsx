@@ -54,8 +54,6 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
     const state = stateRef.current?.value || '';
     const country = countryRef.current?.value || '';
 
-    console.log({ email, dateOfBirth, phoneNumber, address, city, state, country });
-
     await UserService.updateProfile({ email, dateOfBirth, phoneNumber, address, city, state, country });
 
     window.location.reload();
