@@ -59,88 +59,45 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
     window.location.reload();
   }
 
-  const displayedContent = !editing ? (
+  //prettier-ignore
+  const defaultContent = (
     <div className='text-gray-500'>
       <IntroItem icon={<EmailIcon />}>{email}</IntroItem>
       <IntroItem icon={<BirthDayIcon />}>{birthday}</IntroItem>
       <IntroItem icon={<PhoneIcon />}>{phoneNumber}</IntroItem>
       <IntroItem icon={<PinIcon />}>{address}</IntroItem>
-      <IntroItem>
-        {city}
-        {state && `, ${state}`}
-        {country && `, ${country}`}
-      </IntroItem>
+      <IntroItem>{city}{state && `, ${state}`}{country && `, ${country}`}</IntroItem>
     </div>
-  ) : (
+  );
+
+  //prettier-ignore
+  const editModeContent = (
     <form onSubmit={submitHandler}>
       <>
-        <IntroItemInputField
-          label='Email'
-          type='email'
-          ref={emailRef}
-          defaultValue={email}
-        />
-        <IntroItemInputField
-          label='Date of Birth'
-          type='date'
-          ref={dateOfBirthRef}
-          defaultValue={birthday}
-        />
-        <IntroItemInputField
-          label='Phone Number'
-          type='tel'
-          ref={phoneNumberRef}
-          defaultValue={phoneNumber}
-        />
-        <IntroItemInputField
-          label='Address'
-          ref={addressRef}
-          type='text'
-          defaultValue={address}
-        />
-        <IntroItemInputField
-          label='City'
-          ref={cityRef}
-          type='text'
-          defaultValue={city}
-        />
-        <IntroItemInputField
-          label='State'
-          ref={stateRef}
-          type='text'
-          defaultValue={state}
-        />
-        <IntroItemInputField
-          label='Country'
-          ref={countryRef}
-          type='text'
-          defaultValue={country}
-        />
+        <IntroItemInputField label='Email'          type='email'  ref={emailRef}        defaultValue={email} />
+        <IntroItemInputField label='Date of Birth'  type='date'   ref={dateOfBirthRef}  defaultValue={birthday} />
+        <IntroItemInputField label='Phone Number'   type='tel'    ref={phoneNumberRef}  defaultValue={phoneNumber} />
+        <IntroItemInputField label='Address'        type='text'   ref={addressRef}      defaultValue={address} />
+        <IntroItemInputField label='City'           type='text'   ref={cityRef}         defaultValue={city} />
+        <IntroItemInputField label='State'          type='text'   ref={stateRef}        defaultValue={state} />
+        <IntroItemInputField label='Country'        type='text'   ref={countryRef}      defaultValue={country} />
       </>
       <div className='w-full flex justify-center'>
-        <Button
-          className='w-32'
-          variant='primary'
-          type='submit'>
-          Save
-        </Button>
+        <Button className='w-32' variant='primary' type='submit'> Save </Button>
       </div>
     </form>
   );
 
+  //prettier-ignore
   return (
     <div
       className={`m-16 p-8 bg-window rounded-2xl ${className}`}
       {...props}>
       <div className='flex justify-between mb-4'>
         <h1>Intro</h1>
-        {isCurrentUser && (
-          <div onClick={editHandler}>
-            <EditIcon height='24' />
-          </div>
-        )}
+        {!!isCurrentUser && ( <div onClick={editHandler}> <EditIcon height='24' /> </div> )}
       </div>
-      <div className='text-gray-500'>{displayedContent}</div>
+      <div className='text-gray-500'>{!editing ? defaultContent : editModeContent}</div>
     </div>
   );
 }
