@@ -25,8 +25,9 @@ export default function SearchBar() {
     setFocused(true);
   }
 
+  //TODO: MAKE THIS LESS SCUFFED
   function exitFocus() {
-    setFocused(false);
+    setTimeout(() => setFocused(false), 200);
   }
 
   function clearSearch() {
@@ -35,7 +36,9 @@ export default function SearchBar() {
   }
 
   return (
-    <>
+    <div
+      onFocus={enterFocus}
+      onBlur={exitFocus}>
       <div className='bg-white flex items-center rounded-full'>
         <FaSearch className='ml-4' />
         <input
@@ -43,8 +46,6 @@ export default function SearchBar() {
           value={search}
           placeholder='search any user...'
           className='border-0 w-full bg-transparent focus:border-0 focus:ring-0'
-          onFocus={enterFocus}
-          onBlur={exitFocus}
         />
       </div>
 
@@ -68,6 +69,6 @@ export default function SearchBar() {
           )}
         </>
       )}
-    </>
+    </div>
   );
 }
