@@ -8,9 +8,8 @@ const url = 'http://localhost:3000/api/auth';
 export default class AuthService {
   static async signUp(formData: SignUpFormData) {
     try {
-      const response = await axiosService.post(url + '/signup', formData);
-      console.log(response.data);
-
+      await axiosService.post(url + '/signup', formData);
+      localStorage.removeItem('token');
       return true;
     } catch (error) {
       console.error(error);
