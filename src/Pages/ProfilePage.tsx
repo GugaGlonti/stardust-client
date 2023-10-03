@@ -34,8 +34,6 @@ export const profilePageLoader: LoaderFunction = async ({ params }) => {
 
   const profile = (await UserService.getProfile(username)) as ProfileData;
 
-  console.log(profile);
-
   if (!profile) {
     return null;
   }
