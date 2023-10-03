@@ -1,5 +1,4 @@
 import axios from 'axios';
-import AuthService from './auth.service';
 
 const axiosService = axios.create({
   baseURL: 'http://localhost:3000/api',
@@ -19,17 +18,19 @@ axiosService.interceptors.request.use(
   error => Promise.reject(error)
 );
 
+/*
 axiosService.interceptors.response.use(
-  response => response,
+  response => response
   error => {
     if (error.response.status === 401) {
       localStorage.removeItem('token');
       const username = AuthService.me();
-
+      
       if (window.location.pathname === '/' + username) window.location.href = '/';
     }
     return Promise.reject(error);
   }
-);
+  );
+*/
 
 export default axiosService;

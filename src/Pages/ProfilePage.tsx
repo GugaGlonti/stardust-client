@@ -1,34 +1,44 @@
+import { LoaderFunction, useLoaderData } from 'react-router';
 import ProfileAside from '../modules/ProfilePage/ProfileAside/ProfileAside';
 import ProfileHeader from '../modules/ProfilePage/ProfileHeader/ProfileHeader';
 import ProfileMain from '../modules/ProfilePage/ProfileMain/ProfileMain';
-import { LoaderFunction, useLoaderData } from 'react-router';
-import UserService, { ProfileData } from '../services/user.service';
+import UserService from '../services/user.service';
+import { ProfileData } from '../types/interfaces';
 
 export default function ProfilePage() {
-  const profiledata = useLoaderData() as ProfileData;
+  const profileData = useLoaderData() as ProfileData;
 
   return (
     <div className='grid grid-cols-8'>
       <ProfileHeader
-        profileData={profiledata}
+        profileData={profileData}
         className='col-span-full'
       />
       <ProfileAside
-        profileData={profiledata}
-        className='col-start-2 col-span-2'
+        profileData={profileData}
+        className='hd:col-start-2 hd:col-span-2 col-start-1 col-span-3'
       />
       <ProfileMain
-        profileData={profiledata}
-        className='col-span-4'
+        profileData={profileData}
+        className='hd:col-span-4 col-span-5'
       />
     </div>
   );
 }
 
-export const loadProfileInfo: LoaderFunction = async ({ params }) => {
-  console.warn('fetching user');
+export const profilePageLoader: LoaderFunction = async ({ params }) => {
+  console.warn('fetching foreign profile data...');
 
   const { username } = params;
   if (!username) return console.error('No username provided');
-  return (await UserService.getProfile(username)) as ProfileData;
+
+  const profile = (await UserService.getProfile(username)) as ProfileData;
+
+  console.log(profile);
+
+  if (!profile) {
+    return null;
+  }
+
+  return profile;
 };

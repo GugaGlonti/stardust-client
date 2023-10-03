@@ -1,5 +1,5 @@
 import ProfilePicture from '../../../assets/svg/ProfilePicture';
-import { ProfileData } from '../../../services/user.service';
+import { ProfileData } from '../../../types/interfaces';
 
 interface ProfileHeaderProps {
   profileData: ProfileData;

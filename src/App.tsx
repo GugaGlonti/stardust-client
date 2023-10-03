@@ -1,24 +1,27 @@
 import { RouterProvider, useRouteError } from 'react-router';
 import { createBrowserRouter } from 'react-router-dom';
 
-import RootLayout, { getLoggedInUser } from './Pages/Layouts/RootLayout';
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+import RootLayout, { loadProfileData } from './Pages/Layouts/RootLayout';
 
 import HomePage from './Pages/HomePage';
 import SignInPage from './Pages/SignInPage';
 import SignUpPage from './Pages/SignUpPage';
 import JokerPage from './Pages/JokerPage';
 import RoulettePage from './Pages/RoulettePage';
-import ProfilePage, { loadProfileInfo } from './Pages/ProfilePage';
+import ProfilePage, { profilePageLoader } from './Pages/ProfilePage';
 import SettingsPage from './Pages/SettingsPage';
 import MessagesPage from './Pages/MessagesPage';
 import NotificationsPage from './Pages/NotificationsPage';
+import { AuthProvider } from './store/auth.provider';
 
 //prettier-ignore
 const router = createBrowserRouter([
   {
     /** @root */
-    path: '', id: 'root', element: <RootLayout />, errorElement: <ErrorBoundary />,
-    loader: getLoggedInUser,
+    path: '', id: 'root', element: <RootLayout />, errorElement: <ErrorBoundary />, loader: loadProfileData,
+    
     children: [
       /** @page Home Page */
       { path: '', id: 'home', element: <HomePage /> },
@@ -36,7 +39,7 @@ const router = createBrowserRouter([
       { path: 'messages', id: 'messages', element: <MessagesPage /> },
 
       /** @page Profile Page */
-      { path: ':username', id: 'profile', element: <ProfilePage />, loader: loadProfileInfo },
+      { path: ':username', id: 'profile', element: <ProfilePage /> , loader: profilePageLoader },
 
       /** @page Settings Page */
       { path: 'settings', id: 'settings', element: <SettingsPage /> },
@@ -46,8 +49,16 @@ const router = createBrowserRouter([
   { path: 'signup', element: <SignUpPage />, errorElement: <h1>Route Not Found</h1> },
 ]);
 
+const queryClient = new QueryClient();
+
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </AuthProvider>
+  );
 }
 
 function ErrorBoundary() {

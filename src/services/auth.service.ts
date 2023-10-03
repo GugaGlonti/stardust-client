@@ -1,50 +1,49 @@
-import axios from 'axios';
-
-import { ProfileData } from './user.service';
-
+import { ProfileData } from '../types/interfaces';
 import { SignInFormData } from '../modules/SignInForm/SignInForm';
 import { SignUpFormData } from '../modules/SignUpForm/SignUpForm';
+import axiosService from './axios.instance';
 
 const url = 'http://localhost:3000/api/auth';
 
 export default class AuthService {
   static async signUp(formData: SignUpFormData) {
     try {
-      const response = await axios.post(url + '/signup', formData);
+      const response = await axiosService.post(url + '/signup', formData);
       console.log(response.data);
 
       return true;
     } catch (error) {
+      console.error(error);
       return false;
     }
   }
 
   static async singIn(formData: SignInFormData) {
     try {
-      const { data } = (await axios.post(url + '/signin', formData)) as { data: { token: string } };
-      localStorage.setItem('token', data.token);
+      const { data } = (await axiosService.post(url + '/signin', formData)) as { data: { token: string; user: any } };
+      const { token, user } = data;
 
-      return true;
+      localStorage.setItem('token', token);
+
+      return user;
     } catch (error) {
+      console.error(error);
       return false;
     }
   }
 
   static async me(): Promise<ProfileData | undefined> {
     try {
-      const token = localStorage.getItem('token');
+      const { data } = await axiosService.get('http://localhost:3000/api/auth/me');
 
-      if (!token) {
-        console.warn('not logged in');
+      if (!data) {
+        throw new Error('not data retrieved');
       }
 
-      const { data } = await axios.get('http://localhost:3000/api/auth/me', {
-        params: { token },
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
       return data;
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   static isAuth() {

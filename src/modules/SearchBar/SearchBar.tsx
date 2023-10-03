@@ -4,21 +4,21 @@ import UserService from '../../services/user.service';
 import { UserSearchResults } from './UserSearchResults';
 
 export default function SearchBar() {
-  const [search, setSearch] = useState<string>('');
+  const [query, setQuery] = useState<string>('');
   const [users, setUsers] = useState<any[]>([]);
   const [focused, setFocused] = useState<boolean>(true);
 
   useEffect(() => {
     (async function searchUsers() {
-      if (!search) return setUsers([]);
-      const users = await UserService.searchUsers(search);
+      if (!query) return setUsers([]);
+      const users = await UserService.searchUsers(query);
       setUsers(users);
     })();
-  }, [search]);
+  }, [query]);
 
   async function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
     const query = e.target.value;
-    setSearch(query);
+    setQuery(query);
   }
 
   function enterFocus() {
@@ -30,7 +30,7 @@ export default function SearchBar() {
   }
 
   function clearSearch() {
-    setSearch('');
+    setQuery('');
     setUsers([]);
   }
 
@@ -42,7 +42,7 @@ export default function SearchBar() {
         <FaSearch className='ml-4' />
         <input
           onChange={changeHandler}
-          value={search}
+          value={query}
           placeholder='search any user...'
           className='border-0 w-full bg-transparent focus:border-0 focus:ring-0'
         />
@@ -59,7 +59,7 @@ export default function SearchBar() {
             />
           )}
 
-          {!users.length && search && (
+          {!users.length && query && (
             <div className='absolute bg-white rounded-3xl shadow-2xl'>
               <div className='flex items-center gap-2 p-2 m-2 rounded-full'>
                 <h1 className='text-lg'>User Not Found</h1>

@@ -2,30 +2,34 @@ import { useState } from 'react';
 import Button from '../../components/Button';
 import AuthService from '../../services/auth.service';
 import { useNavigate } from 'react-router';
-
-interface SignInFormProps {}
+import { User } from '../../types/user.interface';
 
 export interface SignInFormData {
   identifier: string;
   password: string;
 }
 
-export default function SignInForm({ ...props }: SignInFormProps) {
+export default function SignInForm() {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState<SignInFormData>({ identifier: '', password: '' });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const user = (await AuthService.singIn(formData)) as User;
+
+    if (user) {
+      console.log('user', user);
+
+      return navigate('/');
+    }
+    return navigate('');
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prevData => ({ ...prevData, [name]: value }));
   };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (await AuthService.singIn(formData)) return navigate('/');
-    return navigate('');
-  };
-
-  const { identifier, password } = formData;
 
   return (
     <>
@@ -44,7 +48,7 @@ export default function SignInForm({ ...props }: SignInFormProps) {
                     Email address
                   </label>
                   <input
-                    value={identifier}
+                    value={formData.identifier}
                     onChange={handleChange}
                     id='identifier'
                     name='identifier'
@@ -61,7 +65,7 @@ export default function SignInForm({ ...props }: SignInFormProps) {
                     Password
                   </label>
                   <input
-                    value={password}
+                    value={formData.password}
                     onChange={handleChange}
                     id='password'
                     name='password'
