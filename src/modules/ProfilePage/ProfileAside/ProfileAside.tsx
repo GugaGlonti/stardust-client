@@ -33,7 +33,7 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
   const stateRef = useRef<HTMLInputElement>(null);
   const countryRef = useRef<HTMLInputElement>(null);
 
-  const { email, dateOfBirth, phoneNumber, address, city, country, state, username } = profileData;
+  const { email, dateOfBirth, phoneNumber, address, city, country, state, username } = profileData as ProfileData;
 
   const isCurrentUser = context.user?.username === username;
 

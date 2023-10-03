@@ -7,7 +7,7 @@ interface ProfileHeaderProps {
 }
 
 export default function ProfileHeader({ profileData, className, ...props }: ProfileHeaderProps) {
-  const { username, firstName, lastName } = profileData;
+  const { username, firstName, lastName } = profileData as ProfileData;
 
   return (
     <div
