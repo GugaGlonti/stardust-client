@@ -27,16 +27,13 @@ export default function ProfilePage() {
 }
 
 export const profilePageLoader: LoaderFunction = async ({ params }) => {
-  console.warn('fetching foreign profile data...');
+  console.warn('fetching profile page data...');
 
   const { username } = params;
   if (!username) return console.error('No username provided');
 
   const profile = (await UserService.getProfile(username)) as ProfileData;
-
-  if (!profile) {
-    return null;
-  }
+  if (!profile) return null;
 
   return profile;
 };
