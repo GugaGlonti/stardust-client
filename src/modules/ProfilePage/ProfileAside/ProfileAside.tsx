@@ -1,18 +1,10 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import UserService from '../../../services/user.service';
 import { ProfileData } from '../../../types/interfaces';
-
 import EditIcon from '../../../assets/svg/EditIcon';
-
-import { EmailIcon } from './components/icons/EmailIcon';
-import { BirthDayIcon } from './components/icons/BirthDayIcon';
-import { PhoneIcon } from './components/icons/PhoneIcon';
-import { PinIcon } from './components/icons/PinIcon';
-import { IntroItemInputField } from './components/IntroItemInputField';
-
-import IntroItem from './components/IntroItem';
-import Button from '../../../components/Button';
+import DefaultIntroContent from './components/DefaultIntroContent';
+import EditModeIntroContent from './components/EditModeIntroContent';
 
 interface ProfileAsideProps {
   profileData: ProfileData;
@@ -31,70 +23,56 @@ export default function ProfileAside({ className, profileData, ownProfile, ...pr
   const stateRef = useRef<HTMLInputElement>(null);
   const countryRef = useRef<HTMLInputElement>(null);
 
-  const { email, dateOfBirth, phoneNumber, address, city, country, state, username } = profileData as ProfileData;
-
-  let birthday = '';
-  try {
-    birthday = new Date(dateOfBirth).toISOString().split('T')[0];
-  } catch (error) {}
+  const { email, dateOfBirth, phoneNumber, address, city, country, state } = profileData as ProfileData;
 
   const editHandler = () => setEditing(cur => !cur);
 
   async function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    const email = emailRef.current?.value || '';
-    const dateOfBirth = dateOfBirthRef.current?.value || '';
-    const phoneNumber = phoneNumberRef.current?.value || '';
-    const address = addressRef.current?.value || '';
-    const city = cityRef.current?.value || '';
-    const state = stateRef.current?.value || '';
-    const country = countryRef.current?.value || '';
-
-    await UserService.updateProfile({ email, dateOfBirth, phoneNumber, address, city, state, country });
-
+    await UserService.updateProfile(getFormData());
     window.location.reload();
   }
 
-  //prettier-ignore
-  const defaultContent = (
-    <div className='text-gray-500'>
-      <IntroItem icon={<EmailIcon />}>{email}</IntroItem>
-      <IntroItem icon={<BirthDayIcon />}>{birthday}</IntroItem>
-      <IntroItem icon={<PhoneIcon />}>{phoneNumber}</IntroItem>
-      <IntroItem icon={<PinIcon />}>{address}</IntroItem>
-      <IntroItem>{city}{state && `, ${state}`}{country && `, ${country}`}</IntroItem>
-    </div>
-  );
+  function getFormData() {
+    return {
+      email: emailRef.current?.value || '',
+      dateOfBirth: dateOfBirthRef.current?.value || '',
+      phoneNumber: phoneNumberRef.current?.value || '',
+      address: addressRef.current?.value || '',
+      city: cityRef.current?.value || '',
+      state: stateRef.current?.value || '',
+      country: countryRef.current?.value || '',
+    };
+  }
 
   //prettier-ignore
-  const editModeContent = (
-    <form onSubmit={submitHandler}>
-      <>
-        <IntroItemInputField label='Email'          type='email'  ref={emailRef}        defaultValue={email} />
-        <IntroItemInputField label='Date of Birth'  type='date'   ref={dateOfBirthRef}  defaultValue={birthday} />
-        <IntroItemInputField label='Phone Number'   type='tel'    ref={phoneNumberRef}  defaultValue={phoneNumber} />
-        <IntroItemInputField label='Address'        type='text'   ref={addressRef}      defaultValue={address} />
-        <IntroItemInputField label='City'           type='text'   ref={cityRef}         defaultValue={city} />
-        <IntroItemInputField label='State'          type='text'   ref={stateRef}        defaultValue={state} />
-        <IntroItemInputField label='Country'        type='text'   ref={countryRef}      defaultValue={country} />
-      </>
-      <div className='w-full flex justify-center'>
-        <Button className='w-32' variant='primary' type='submit'> Save </Button>
-      </div>
-    </form>
-  );
+  const refs = { emailRef, dateOfBirthRef, phoneNumberRef, addressRef, cityRef, stateRef, countryRef };
+  const defaultValues = { email, dateOfBirth, phoneNumber, address, city, country, state };
 
-  //prettier-ignore
   return (
     <div
       className={`m-16 p-8 bg-window rounded-2xl ${className}`}
       {...props}>
       <div className='flex justify-between mb-4'>
         <h1>Intro</h1>
-        {!!ownProfile && ( <div onClick={editHandler}> <EditIcon height='24' /> </div> )}
+        {!!ownProfile && (
+          <EditIcon
+            onClick={editHandler}
+            height='24'
+          />
+        )}
       </div>
-      <div className='text-gray-500'>{!editing ? defaultContent : editModeContent}</div>
+      <div className='text-gray-500'>
+        {!editing ? (
+          <DefaultIntroContent profileData={profileData} />
+        ) : (
+          <EditModeIntroContent
+            refs={refs}
+            defaultValues={defaultValues}
+            submitHandler={submitHandler}
+          />
+        )}
+      </div>
     </div>
   );
 }

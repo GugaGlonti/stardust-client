@@ -5,4 +5,5 @@ export interface ISVG {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  onClick?: () => void;
 }

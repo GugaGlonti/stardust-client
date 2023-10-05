@@ -1,8 +1,9 @@
 import { ISVG } from './ISVG';
 
-export default function EditIcon({ width, height, fill = 'none', strokeWidth = 1.5, className = '', stroke = 'currentColor', ...props }: ISVG) {
+export default function EditIcon({ onClick, width, height, fill = 'none', strokeWidth = 1.5, className = '', stroke = 'currentColor', ...props }: ISVG) {
   return (
     <svg
+      onClick={onClick}
       xmlns='http://www.w3.org/2000/svg'
       fill={fill}
       width={width}
