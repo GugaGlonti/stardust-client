@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import NavButton from './NavButton';
+
 import NotificationIcon from '../../../assets/svg/NotificationIcon';
 import SettingsIcon from '../../../assets/svg/SettingsIcon';
 import ChatIcon from '../../../assets/svg/ChatIcon';
@@ -9,7 +11,7 @@ export interface SignedInNavigationProps {
   username: string;
 }
 
-export const SignedInNavigation = function ({ username }: SignedInNavigationProps) {
+export default function SignedInNavigation({ username }: SignedInNavigationProps) {
   const navigate = useNavigate();
 
   const [isHovering, setIsHovering] = useState<boolean>(false);
@@ -70,4 +72,4 @@ export const SignedInNavigation = function ({ username }: SignedInNavigationProp
       </NavButton>
     </>
   );
-};
+}

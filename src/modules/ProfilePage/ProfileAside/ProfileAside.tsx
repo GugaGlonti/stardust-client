@@ -1,8 +1,11 @@
 import React, { useRef, useState } from 'react';
 
-import UserService from '../../../services/user.service';
 import { ProfileData } from '../../../types/interfaces';
+
+import UserService from '../../../services/user.service';
+
 import EditIcon from '../../../assets/svg/EditIcon';
+
 import DefaultIntroContent from './components/DefaultIntroContent';
 import EditModeIntroContent from './components/EditModeIntroContent';
 

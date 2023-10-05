@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import Button from '../../components/Button';
-import AuthService from '../../services/auth.service';
 import { useNavigate } from 'react-router';
+
+import AuthService from '../../services/auth.service';
+
 import { User } from '../../types/user.interface';
+
+import Button from '../../components/Button';
 
 export interface SignInFormData {
   identifier: string;

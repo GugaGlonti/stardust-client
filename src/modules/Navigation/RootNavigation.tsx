@@ -1,12 +1,12 @@
-import NavButton from './components/NavButton';
-import ColorBar from '../../components/UTIL/ColorBar';
-
-import SearchBar from '../SearchBar/SearchBar';
-import { SignedInNavigation } from './components/SignedInNavigation';
-import SignedOutNavigation from './components/SignedOutNavigation';
-
 import { useContext } from 'react';
 import { authContext } from '../../store/auth.provider';
+
+import NavButton from './components/NavButton';
+import ColorBar from '../../components/UTIL/ColorBar';
+import SearchBar from '../SearchBar/SearchBar';
+
+import SignedInNavigation from './components/SignedInNavigation';
+import SignedOutNavigation from './components/SignedOutNavigation';
 
 export default function RootNavigation() {
   const context = useContext(authContext);

@@ -1,4 +1,5 @@
 import axiosService from './axios.instance';
+
 import { ProfileData, UpdateProfileData, SearchUsersData } from '../types/interfaces';
 
 const url = 'http://localhost:3000/api/users/';

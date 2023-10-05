@@ -1,11 +1,15 @@
-import { LoaderFunction, useLoaderData } from 'react-router';
-import ProfileAside from '../modules/ProfilePage/ProfileAside/ProfileAside';
-import ProfileHeader from '../modules/ProfilePage/ProfileHeader/ProfileHeader';
-import ProfileMain from '../modules/ProfilePage/ProfileMain/ProfileMain';
-import UserService from '../services/user.service';
-import { ProfileData } from '../types/interfaces';
 import { useContext } from 'react';
+import { LoaderFunction, useLoaderData } from 'react-router';
+
+import UserService from '../services/user.service';
+
+import { ProfileData } from '../types/interfaces';
+
 import { authContext } from '../store/auth.provider';
+
+import ProfileHeader from '../modules/ProfilePage/ProfileHeader/ProfileHeader';
+import ProfileAside from '../modules/ProfilePage/ProfileAside/ProfileAside';
+import ProfileMain from '../modules/ProfilePage/ProfileMain/ProfileMain';
 
 export default function ProfilePage() {
   const profileData = useLoaderData() as ProfileData;

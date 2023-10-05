@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+
 import { FaSearch } from 'react-icons/fa';
+
 import UserService from '../../services/user.service';
-import { UserSearchResults } from './UserSearchResults';
+
+import UserSearchResults from './UserSearchResults';
 
 export default function SearchBar() {
   const [query, setQuery] = useState<string>('');

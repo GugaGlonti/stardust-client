@@ -1,7 +1,9 @@
+import axiosService from './axios.instance';
+
 import { ProfileData } from '../types/interfaces';
+
 import { SignInFormData } from '../modules/SignInForm/SignInForm';
 import { SignUpFormData } from '../modules/SignUpForm/SignUpForm';
-import axiosService from './axios.instance';
 
 const url = 'http://localhost:3000/api/auth';
 

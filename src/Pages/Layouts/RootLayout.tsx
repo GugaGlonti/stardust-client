@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { LoaderFunction, Outlet, useLoaderData } from 'react-router';
+
+import AuthService from '../../services/auth.service';
+
+import { User } from '../../types/user.interface';
+
 import RootNavigation from '../../modules/Navigation/RootNavigation';
 import Footer from '../../modules/Footer/Footer';
-import AuthService from '../../services/auth.service';
-import { useContext } from 'react';
+
 import { authContext } from '../../store/auth.provider';
-import { User } from '../../types/user.interface';
 
 export default function RootLayout() {
   const context = useContext(authContext);
