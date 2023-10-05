@@ -1,18 +1,21 @@
 import ProfilePicture from '../../../assets/svg/ProfilePicture';
+import Button from '../../../components/Button';
 import { ProfileData } from '../../../types/interfaces';
 
 interface ProfileHeaderProps {
   profileData: ProfileData;
+  ownProfile: boolean;
   className?: string;
 }
 
-export default function ProfileHeader({ profileData, className, ...props }: ProfileHeaderProps) {
+export default function ProfileHeader({ profileData, className, ownProfile, ...props }: ProfileHeaderProps) {
   const { username, firstName, lastName } = profileData as ProfileData;
 
   return (
     <div
       className={`flex justify-between mx-16 mt-16 p-8 bg-window rounded-2xl ${className}`}
       {...props}>
+      {/** @left side */}
       <div className='flex items-end'>
         <ProfilePicture
           height='96'
@@ -27,7 +30,15 @@ export default function ProfileHeader({ profileData, className, ...props }: Prof
         </div>
       </div>
 
-      <div className='flex items-end'></div>
+      {/** @right side */}
+      <div className='flex items-end gap-4'>
+        {!ownProfile && (
+          <>
+            <Button variant='primary'>Add Friend</Button>
+            <Button variant='secondary'>Add Friend</Button>
+          </>
+        )}
+      </div>
     </div>
   );
 }

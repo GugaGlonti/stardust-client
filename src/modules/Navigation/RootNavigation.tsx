@@ -11,7 +11,7 @@ import { authContext } from '../../store/auth.provider';
 export default function RootNavigation() {
   const context = useContext(authContext);
 
-  const { user } = context;
+  const { loggedInUser: user } = context;
   let username = user?.username || '';
   let loggedIn = username !== '';
 

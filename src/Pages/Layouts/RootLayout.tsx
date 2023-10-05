@@ -8,7 +8,7 @@ import { User } from '../../types/user.interface';
 
 export default function RootLayout() {
   const context = useContext(authContext);
-  const { setUser } = context;
+  const { setLoggedInUser: setUser } = context;
 
   const user = useLoaderData() as User;
   if (user) setUser && setUser(user);

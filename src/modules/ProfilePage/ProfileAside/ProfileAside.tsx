@@ -13,16 +13,14 @@ import { IntroItemInputField } from './components/IntroItemInputField';
 
 import IntroItem from './components/IntroItem';
 import Button from '../../../components/Button';
-import { authContext } from '../../../store/auth.provider';
 
 interface ProfileAsideProps {
   profileData: ProfileData;
+  ownProfile: boolean;
   className?: string;
 }
 
-export default function ProfileAside({ className, profileData, ...props }: ProfileAsideProps) {
-  const context = useContext(authContext);
-
+export default function ProfileAside({ className, profileData, ownProfile, ...props }: ProfileAsideProps) {
   const [editing, setEditing] = useState<boolean>(false);
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -34,8 +32,6 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
   const countryRef = useRef<HTMLInputElement>(null);
 
   const { email, dateOfBirth, phoneNumber, address, city, country, state, username } = profileData as ProfileData;
-
-  const isCurrentUser = context.user?.username === username;
 
   let birthday = '';
   try {
@@ -96,7 +92,7 @@ export default function ProfileAside({ className, profileData, ...props }: Profi
       {...props}>
       <div className='flex justify-between mb-4'>
         <h1>Intro</h1>
-        {!!isCurrentUser && ( <div onClick={editHandler}> <EditIcon height='24' /> </div> )}
+        {!!ownProfile && ( <div onClick={editHandler}> <EditIcon height='24' /> </div> )}
       </div>
       <div className='text-gray-500'>{!editing ? defaultContent : editModeContent}</div>
     </div>
