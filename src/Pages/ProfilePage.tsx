@@ -17,12 +17,14 @@ export default function ProfilePage() {
 
   const { loggedInUser } = context;
   const ownProfile = loggedInUser?.username === profileData.username;
+  const loggedIn = !!loggedInUser;
 
   return (
     <div className='grid grid-cols-8'>
       <ProfileHeader
         profileData={profileData}
         ownProfile={ownProfile}
+        loggedIn={loggedIn}
         className='col-span-full'
       />
       <ProfileAside

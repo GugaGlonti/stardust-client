@@ -7,9 +7,10 @@ interface ProfileHeaderProps {
   profileData: ProfileData;
   ownProfile: boolean;
   className?: string;
+  loggedIn: boolean;
 }
 
-export default function ProfileHeader({ profileData, className, ownProfile, ...props }: ProfileHeaderProps) {
+export default function ProfileHeader({ profileData, className, ownProfile, loggedIn, ...props }: ProfileHeaderProps) {
   const { username, firstName, lastName } = profileData as ProfileData;
 
   return (
@@ -24,7 +25,10 @@ export default function ProfileHeader({ profileData, className, ownProfile, ...p
       />
 
       {/** @right side */}
-      <ProfileHeaderRightSide ownProfile={ownProfile} />
+      <ProfileHeaderRightSide
+        ownProfile={ownProfile}
+        loggedIn={loggedIn}
+      />
     </div>
   );
 }

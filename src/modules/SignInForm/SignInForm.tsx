@@ -21,11 +21,7 @@ export default function SignInForm() {
     e.preventDefault();
     const user = (await AuthService.singIn(formData)) as User;
 
-    if (user) {
-      console.log('user', user);
-
-      return navigate('/');
-    }
+    if (user) return navigate('/');
     return navigate('');
   };
 

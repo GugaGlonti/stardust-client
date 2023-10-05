@@ -12,6 +12,7 @@ export default class AuthService {
     try {
       await axiosService.post(url + '/signup', formData);
       localStorage.removeItem('token');
+
       return true;
     } catch (error) {
       console.error(error);
@@ -36,10 +37,7 @@ export default class AuthService {
   static async me(): Promise<ProfileData | undefined> {
     try {
       const { data } = await axiosService.get('http://localhost:3000/api/auth/me');
-
-      if (!data) {
-        throw new Error('not data retrieved');
-      }
+      if (!data) throw new Error('not data retrieved');
 
       return data;
     } catch (error) {
