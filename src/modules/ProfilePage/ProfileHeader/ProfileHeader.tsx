@@ -1,20 +1,21 @@
-import { ProfileData } from '../../../types/interfaces';
+import NotificationService from '../../../services/notification.service';
+import { User } from '../../../types/interfaces';
 
 import ProfileHeaderLeftSide from './components/ProfileHeaderLeftSide';
 import ProfileHeaderRightSide from './components/ProfileHeaderRightSide';
 
 interface ProfileHeaderProps {
-  profileData: ProfileData;
+  profileData: User;
   ownProfile: boolean;
   className?: string;
   loggedIn: boolean;
 }
 
 export default function ProfileHeader({ profileData, className, ownProfile, loggedIn, ...props }: ProfileHeaderProps) {
-  const { username, firstName, lastName } = profileData as ProfileData;
+  const { username, firstName, lastName } = profileData as User;
 
   function sendFriendRequest() {
-    console.log('friend request sent to ' + username);
+    NotificationService.sendFriendRequest(username);
   }
 
   return (

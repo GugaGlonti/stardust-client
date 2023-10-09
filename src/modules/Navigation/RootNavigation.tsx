@@ -11,9 +11,11 @@ import SignedOutNavigation from './components/SignedOutNavigation';
 export default function RootNavigation() {
   const context = useContext(authContext);
 
-  const { loggedInUser: user } = context;
-  let username = user?.username || '';
-  let loggedIn = username !== '';
+  const { loggedInUser } = context;
+
+  const username = loggedInUser?.username || '';
+  const loggedIn = username !== '';
+  const notificationCount = loggedInUser?.notificationCount || 0;
 
   return (
     <>
@@ -34,7 +36,16 @@ export default function RootNavigation() {
         </div>
 
         {/** @Navigation right */}
-        <div className='flex justify-between items-center gap-4 h-full'>{!!loggedIn ? <SignedInNavigation username={username} /> : <SignedOutNavigation />}</div>
+        <div className='flex justify-between items-center gap-4 h-full'>
+          {!!loggedIn ? (
+            <SignedInNavigation
+              username={username}
+              notificationCount={notificationCount}
+            />
+          ) : (
+            <SignedOutNavigation />
+          )}
+        </div>
       </div>
     </>
   );

@@ -1,16 +1,15 @@
 import React, { useRef, useState } from 'react';
 
-import { ProfileData } from '../../../types/interfaces';
-
 import UserService from '../../../services/user.service';
 
 import EditIcon from '../../../assets/svg/EditIcon';
 
 import DefaultIntroContent from './components/DefaultIntroContent';
 import EditModeIntroContent from './components/EditModeIntroContent';
+import { User } from '../../../types/interfaces';
 
 interface ProfileAsideProps {
-  profileData: ProfileData;
+  profileData: User;
   ownProfile: boolean;
   className?: string;
 }
@@ -26,7 +25,7 @@ export default function ProfileAside({ className, profileData, ownProfile, ...pr
   const stateRef = useRef<HTMLInputElement>(null);
   const countryRef = useRef<HTMLInputElement>(null);
 
-  const { email, dateOfBirth, phoneNumber, address, city, country, state } = profileData as ProfileData;
+  const { email, dateOfBirth, phoneNumber, address, city, country, state } = profileData as User;
 
   const editHandler = () => setEditing(cur => !cur);
 

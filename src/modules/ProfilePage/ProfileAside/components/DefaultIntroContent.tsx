@@ -1,4 +1,4 @@
-import { ProfileData } from '../../../../types/interfaces';
+import { User } from '../../../../types/interfaces';
 
 import { BirthDayIcon } from './icons/BirthDayIcon';
 import { EmailIcon } from './icons/EmailIcon';
@@ -8,11 +8,11 @@ import { PinIcon } from './icons/PinIcon';
 import IntroItem from './IntroItem';
 
 interface DefaultIntroContentProps {
-  profileData: ProfileData;
+  profileData: User;
 }
 
 export default function DefaultIntroContent({ profileData, ...props }: DefaultIntroContentProps) {
-  const { email, dateOfBirth, phoneNumber, address, city, state, country } = profileData as ProfileData;
+  const { email, dateOfBirth, phoneNumber, address, city, state, country } = profileData as User;
 
   let birthday = '';
   try {

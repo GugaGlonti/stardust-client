@@ -1,6 +1,6 @@
 import axiosService from './axios.instance';
 
-import { ProfileData } from '../types/interfaces';
+import { User } from '../types/interfaces';
 
 import { SignInFormData } from '../modules/SignInForm/SignInForm';
 import { SignUpFormData } from '../modules/SignUpForm/SignUpForm';
@@ -34,7 +34,7 @@ export default class AuthService {
     }
   }
 
-  static async me(): Promise<ProfileData | undefined> {
+  static async me(): Promise<User | undefined> {
     try {
       const { data } = await axiosService.get('http://localhost:3000/api/auth/me');
       if (!data) throw new Error('not data retrieved');

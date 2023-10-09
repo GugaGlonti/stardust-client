@@ -3,7 +3,7 @@ import { LoaderFunction, useLoaderData } from 'react-router';
 
 import UserService from '../services/user.service';
 
-import { ProfileData } from '../types/interfaces';
+import { User } from '../types/interfaces';
 
 import { authContext } from '../store/auth.provider';
 
@@ -12,7 +12,7 @@ import ProfileAside from '../modules/ProfilePage/ProfileAside/ProfileAside';
 import ProfileMain from '../modules/ProfilePage/ProfileMain/ProfileMain';
 
 export default function ProfilePage() {
-  const profileData = useLoaderData() as ProfileData;
+  const profileData = useLoaderData() as User;
   const context = useContext(authContext);
 
   const { loggedInUser } = context;
@@ -43,7 +43,7 @@ export const profilePageLoader: LoaderFunction = async ({ params }) => {
   const { username } = params;
   if (!username) return console.error('No username provided');
 
-  const profile = (await UserService.getProfile(username)) as ProfileData;
+  const profile = (await UserService.getProfile(username)) as User;
   if (!profile) return null;
 
   return profile;

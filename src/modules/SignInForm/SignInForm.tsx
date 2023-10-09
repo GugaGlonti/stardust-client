@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import AuthService from '../../services/auth.service';
 
-import { User } from '../../types/user.interface';
+import { User } from '../../types/interfaces';
 
 import Button from '../../components/Button';
 

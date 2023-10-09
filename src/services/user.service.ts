@@ -1,13 +1,13 @@
 import axiosService from './axios.instance';
 
-import { ProfileData, UpdateProfileData, SearchUsersData } from '../types/interfaces';
+import { UpdateProfileData, SearchUsersData, User } from '../types/interfaces';
 
 const url = 'http://localhost:3000/api/users/';
 
 export default class UserService {
   static async getProfile(username: string) {
     try {
-      return (await axiosService.get(url + username)).data as ProfileData;
+      return (await axiosService.get(url + username)).data as User;
     } catch (error) {
       console.error('req failed | getProfile | UserService');
       console.error(error);

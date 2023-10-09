@@ -9,9 +9,10 @@ import ChatIcon from '../../../assets/svg/ChatIcon';
 
 export interface SignedInNavigationProps {
   username: string;
+  notificationCount: number;
 }
 
-export default function SignedInNavigation({ username }: SignedInNavigationProps) {
+export default function SignedInNavigation({ username, notificationCount }: SignedInNavigationProps) {
   const navigate = useNavigate();
 
   const [isHovering, setIsHovering] = useState<boolean>(false);
@@ -37,6 +38,7 @@ export default function SignedInNavigation({ username }: SignedInNavigationProps
     <>
       <NavButton to='/notification'>
         <NotificationIcon />
+        {!!notificationCount && <div className='bg-secondary-dark h-4 w-4 rounded-full flex justify-center items-center text-white text-xs'>{notificationCount}</div>}
       </NavButton>
 
       <NavButton to='/messages'>
