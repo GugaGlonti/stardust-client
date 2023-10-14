@@ -23,7 +23,7 @@ export default function ProfileHeaderRightSide({ ownProfile, loggedIn, onSendFri
             onClick={sendFriendRequest}>
             Add Friend
           </Button>
-          <Button variant='secondary'>Add Friend</Button>
+          <Button variant='secondary'>PLACEHOLDER</Button>
         </>
       )}
     </div>
