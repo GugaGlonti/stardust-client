@@ -16,7 +16,7 @@ export default function NotificationWindow({ ...props }: NotificationMainProps) 
       className='bg-window w-1/2 mt-16 rounded-2xl'
       {...props}>
       <NotificationHeader notificationCount={notificationCount} />
-      <NotificationMain />
+      {!!notificationCount && <NotificationMain />}
     </div>
   );
 }

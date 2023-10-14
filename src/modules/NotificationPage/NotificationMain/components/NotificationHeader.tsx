@@ -5,9 +5,12 @@ interface NotificationHeaderProps {
 }
 
 export default function NotificationHeader({ notificationCount, ...props }: NotificationHeaderProps) {
+  let classes = 'bg-window rounded-2xl p-8 flex gap-4';
+  if (notificationCount) classes += ' shadow-lg';
+
   return (
     <div
-      className='bg-window rounded-t-2xl p-8 flex gap-4 shadow-lg'
+      className={classes}
       {...props}>
       <FaBell className='text-2xl' />
       <div className='flex gap-1'>
