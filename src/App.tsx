@@ -13,7 +13,7 @@ import RoulettePage from './Pages/RoulettePage';
 import ProfilePage, { profilePageLoader } from './Pages/ProfilePage';
 import SettingsPage from './Pages/SettingsPage';
 import MessagesPage from './Pages/MessagesPage';
-import NotificationsPage from './Pages/NotificationsPage';
+import NotificationPage from './Pages/NotificationPage';
 import { AuthProvider } from './store/auth.provider';
 
 //prettier-ignore
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       { path: 'roulette', id: 'roulette', element: <RoulettePage /> },
 
       /** @page Notifications Page */
-      { path: 'notification', id: 'notification', element: <NotificationsPage /> },
+      { path: 'notification', id: 'notification', element: <NotificationPage /> },
 
       /** @page Messages Page */
       { path: 'messages', id: 'messages', element: <MessagesPage /> },

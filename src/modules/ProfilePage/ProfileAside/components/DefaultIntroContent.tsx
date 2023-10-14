@@ -23,15 +23,13 @@ export default function DefaultIntroContent({ profileData, ...props }: DefaultIn
     <div
       className='text-gray-500'
       {...props}>
-      <IntroItem icon={<EmailIcon />}> {email} </IntroItem>
-      <IntroItem icon={<BirthDayIcon />}> {birthday} </IntroItem>
-      <IntroItem icon={<PhoneIcon />}> {phoneNumber} </IntroItem>
-      <IntroItem icon={<PinIcon />}> {address} </IntroItem>
-      <IntroItem>
-        {city}
-        {state && `, ${state}`}
-        {country && `, ${country}`}
-      </IntroItem>
+      {!!email && <IntroItem icon={<EmailIcon />}> {email} </IntroItem>}
+      {!!birthday && <IntroItem icon={<BirthDayIcon />}> {birthday} </IntroItem>}
+      {!!phoneNumber && <IntroItem icon={<PhoneIcon />}> {phoneNumber} </IntroItem>}
+      {!!address && <IntroItem icon={<PinIcon />}> {address} </IntroItem>}
+      {!!city && <IntroItem> {city} </IntroItem>}
+      {!!state && <IntroItem> {state} </IntroItem>}
+      {!!country && <IntroItem> {country} </IntroItem>}
     </div>
   );
 }

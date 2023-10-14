@@ -1,9 +1,9 @@
-import FormHeader from '../../components/FormHeader';
+import FormHeader from '../../../components/FormHeader';
 import LogInHere from './components/LogInHere';
-import Button from '../../components/Button';
+import Button from '../../../components/Button';
 import SignUpFormInput from './components/SignUpFormInput';
 import { useState } from 'react';
-import AuthService from '../../services/auth.service';
+import AuthService from '../../../services/auth.service';
 import { useNavigate } from 'react-router';
 
 interface SignUpFormProps {}

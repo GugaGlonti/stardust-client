@@ -5,9 +5,9 @@ import { UpdateProfileData, SearchUsersData, User } from '../types/interfaces';
 const url = 'http://localhost:3000/api/users/';
 
 export default class UserService {
-  static async getProfile(username: string) {
+  static async getProfile(identifier: string | number) {
     try {
-      return (await axiosService.get(url + username)).data as User;
+      return (await axiosService.get(url + identifier)).data as User;
     } catch (error) {
       console.error('req failed | getProfile | UserService');
       console.error(error);
