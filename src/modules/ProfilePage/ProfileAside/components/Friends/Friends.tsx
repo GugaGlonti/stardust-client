@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react';
+
 import { User } from '../../../../../types/interfaces';
 import UserService from '../../../../../services/user.service';
+
 import Friend from './Friend';
 
-interface FriendsProps {}
+interface FriendsProps {
+  profileData: User;
+}
 
-export default function Friends({ ...props }: FriendsProps) {
+export default function Friends({ profileData, ...props }: FriendsProps) {
   const [friends, setFriends] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+
+  const { username } = profileData;
 
   useEffect(() => {
     (async () => {
       console.warn('fetching friends');
-      setFriends(await UserService.getFriends());
+      setFriends(await UserService.getFriends(username));
       setLoading(false);
     })();
-  }, []);
+  }, [username]);
 
   if (loading) return <h1 className='p-8'>loading...</h1>;
 

@@ -18,6 +18,9 @@ export default function ProfileHeader({ profileData, className, ownProfile, logg
     NotificationService.sendFriendRequest(username);
   }
 
+  // SENT YOU A FRIEND REQUEST
+  // REMOVE BUTTON
+
   return (
     <div
       className={`flex justify-between mx-16 mt-16 p-8 bg-window rounded-2xl ${className}`}

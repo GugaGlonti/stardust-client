@@ -34,9 +34,9 @@ export default class UserService {
     }
   }
 
-  static async getFriends() {
+  static async getFriends(username: string) {
     try {
-      return (await axiosService.get(url + 'friends')).data as User[];
+      return (await axiosService.get(url + 'friends', { params: { username } })).data as User[];
     } catch (error) {
       console.error('req failed | getFriends | UserService');
       console.error(error);

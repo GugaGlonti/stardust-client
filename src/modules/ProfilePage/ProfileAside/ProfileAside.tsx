@@ -18,7 +18,7 @@ export default function ProfileAside({ className, profileData, ownProfile, ...pr
         profileData={profileData}
         ownProfile={ownProfile}
       />
-      <Friends />
+      <Friends profileData={profileData} />
     </div>
   );
 }
