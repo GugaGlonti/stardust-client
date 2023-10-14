@@ -4,9 +4,10 @@ import UserService from '../../../services/user.service';
 
 import EditIcon from '../../../assets/svg/EditIcon';
 
-import DefaultIntroContent from './components/DefaultIntroContent';
-import EditModeIntroContent from './components/EditModeIntroContent';
+import DefaultIntroContent from './components/Intro/DefaultIntroContent';
+import EditModeIntroContent from './components/Intro/EditModeIntroContent';
 import { User } from '../../../types/interfaces';
+import Friends from './components/Friends/Friends';
 
 interface ProfileAsideProps {
   profileData: User;
@@ -75,6 +76,8 @@ export default function ProfileAside({ className, profileData, ownProfile, ...pr
           />
         )}
       </div>
+      <div className='my-8'>Friends</div>
+      <Friends friends={[]} />
     </div>
   );
 }

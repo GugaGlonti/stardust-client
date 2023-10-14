@@ -1,9 +1,9 @@
-import { User } from '../../../../types/interfaces';
+import { User } from '../../../../../types/interfaces';
 
-import { BirthDayIcon } from './icons/BirthDayIcon';
-import { EmailIcon } from './icons/EmailIcon';
-import { PhoneIcon } from './icons/PhoneIcon';
-import { PinIcon } from './icons/PinIcon';
+import { BirthDayIcon } from '../icons/BirthDayIcon';
+import { EmailIcon } from '../icons/EmailIcon';
+import { PhoneIcon } from '../icons/PhoneIcon';
+import { PinIcon } from '../icons/PinIcon';
 
 import IntroItem from './IntroItem';
 
