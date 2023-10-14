@@ -1,21 +1,37 @@
+import { useEffect, useState } from 'react';
 import { User } from '../../../../../types/interfaces';
+import UserService from '../../../../../services/user.service';
+import Friend from './Friend';
 
-interface FriendsProps {
-  friends: User[];
-}
+interface FriendsProps {}
 
-export default function Friends({ friends, ...props }: FriendsProps) {
+export default function Friends({ ...props }: FriendsProps) {
+  const [friends, setFriends] = useState<User[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    (async () => {
+      console.warn('fetching friends');
+      setFriends(await UserService.getFriends());
+      setLoading(false);
+    })();
+  }, []);
+
+  if (loading) return <h1 className='p-8'>loading...</h1>;
+
   return (
     <>
-      <div className='my-8'>Friends</div>
+      <div className='my-8'>Friends ({friends.length})</div>
+
       <div
         className='grid grid-cols-3'
         {...props}>
-        <h1 className='bg-red-500'>test</h1>
-        <h1 className='bg-red-500'>test</h1>
-        <h1 className='bg-red-500'>test</h1>
-        <h1 className='bg-red-500'>test</h1>
-        <h1 className='bg-red-500'>test</h1>
+        {friends.map((friend, i) => (
+          <Friend
+            friend={friend}
+            key={i}
+          />
+        ))}
       </div>
     </>
   );

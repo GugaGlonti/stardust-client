@@ -32,7 +32,7 @@ export default function ProfilePage() {
         ownProfile={ownProfile}
         className='hd:col-start-2 hd:col-span-2 col-start-1 col-span-3'
       />
-      <ProfileMain className='hd:col-span-4 col-span-5' />
+      <ProfileMain className='hd:col-span-4 col-span-5 h-max' />
     </div>
   );
 }
