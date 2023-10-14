@@ -18,10 +18,7 @@ export default function RootLayout() {
   const { setLoggedInUser: setUser } = context;
 
   useEffect(() => {
-    (async () => {
-      if (!user) return;
-      setUser && setUser(user);
-    })();
+    (async () => user && setUser && setUser(user))();
   });
 
   return (
