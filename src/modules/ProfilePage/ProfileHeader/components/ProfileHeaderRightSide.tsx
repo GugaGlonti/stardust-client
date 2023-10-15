@@ -7,7 +7,6 @@ interface ProfileHeaderRightSideProps {
 }
 
 export default function ProfileHeaderRightSide({ ownProfile, loggedIn, onSendFriendRequest, ...props }: ProfileHeaderRightSideProps) {
-  /** @drill */
   function sendFriendRequest() {
     onSendFriendRequest();
   }

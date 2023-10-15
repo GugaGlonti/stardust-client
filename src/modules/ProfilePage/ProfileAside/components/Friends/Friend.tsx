@@ -11,7 +11,7 @@ export default function Friend({ friend, ...props }: FriendProps) {
   return (
     <div {...props}>
       <ProfilePicture url={url} />
-      <h1 className='text-xs mb-8 ml-4'>@{friend.username}</h1>
+      <h1 className='text-xs mb-8 ml-2'>@{friend.username}</h1>
     </div>
   );
 }

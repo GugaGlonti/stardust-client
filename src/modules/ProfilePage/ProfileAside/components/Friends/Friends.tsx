@@ -21,6 +21,11 @@ export default function Friends({ profileData, ...props }: FriendsProps) {
       setFriends(await UserService.getFriends(username));
       setLoading(false);
     })();
+    return () => {
+      console.log('cleaning up friends');
+      setFriends([]);
+      setLoading(true);
+    };
   }, [username]);
 
   if (loading) return <h1 className='p-8'>loading...</h1>;
