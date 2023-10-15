@@ -11,6 +11,11 @@ module.exports = {
       wide: '1920px',
     },
     extend: {
+      spacing: {
+        '80vh': '80vh',
+        '70vh': '70vh',
+        '60vh': '60vh',
+      },
       colors: {
         //branding
         primary: '#c084fc',
