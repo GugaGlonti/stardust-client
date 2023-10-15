@@ -9,9 +9,10 @@ interface ProfileHeaderProps {
   ownProfile: boolean;
   className?: string;
   loggedIn: boolean;
+  isFriend?: boolean;
 }
 
-export default function ProfileHeader({ profileData, className, ownProfile, loggedIn, ...props }: ProfileHeaderProps) {
+export default function ProfileHeader({ profileData, className, ownProfile, isFriend, loggedIn, ...props }: ProfileHeaderProps) {
   const { username, firstName, lastName } = profileData as User;
 
   function sendFriendRequest() {
@@ -25,18 +26,17 @@ export default function ProfileHeader({ profileData, className, ownProfile, logg
     <div
       className={`flex justify-between mx-16 mt-16 p-8 bg-window rounded-2xl ${className}`}
       {...props}>
-      {/** @left side */}
       <ProfileHeaderLeftSide
         firstName={firstName}
         lastName={lastName}
         username={username}
       />
 
-      {/** @right side */}
       <ProfileHeaderRightSide
         onSendFriendRequest={sendFriendRequest}
         ownProfile={ownProfile}
         loggedIn={loggedIn}
+        isFriend={isFriend}
       />
     </div>
   );

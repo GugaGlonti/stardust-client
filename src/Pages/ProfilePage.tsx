@@ -14,10 +14,13 @@ import ProfileMain from '../modules/ProfilePage/ProfileMain/ProfileMain';
 export default function ProfilePage() {
   const profileData = useLoaderData() as User;
   const context = useContext(authContext);
+  if (!profileData) return null;
 
   const { loggedInUser } = context;
+
   const ownProfile = loggedInUser?.username === profileData.username;
   const loggedIn = !!loggedInUser;
+  const isFriend = loggedInUser?.friends?.includes(profileData.username) || false;
 
   return (
     <div className='grid grid-cols-8'>
@@ -25,6 +28,7 @@ export default function ProfilePage() {
         profileData={profileData}
         ownProfile={ownProfile}
         loggedIn={loggedIn}
+        isFriend={isFriend}
         className='col-span-full'
       />
       <ProfileAside

@@ -15,6 +15,7 @@ export interface User {
   profilePicture: string;
 
   notificationCount: number;
+  friends?: string[];
 
   password?: string;
 }
