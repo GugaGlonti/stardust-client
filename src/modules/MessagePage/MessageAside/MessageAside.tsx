@@ -19,7 +19,7 @@ export default function MessageAside() {
 
   useEffect(() => {
     (async () => {
-      setChatIdentifiers(await ChatService.geChatIdentifiers(friends as string[], username as string));
+      setChatIdentifiers(await ChatService.getChatIdentifiers(friends as string[], username as string));
       setLoading(false);
     })();
   }, [friends, username]);

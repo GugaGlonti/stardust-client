@@ -27,14 +27,20 @@ export default function MessageProfile() {
   if (loading) return <h1 className='p-8'>loading...</h1>;
   if (!friend) return <h1 className='p-8'>friend could not be fetched</h1>;
 
+  const { firstName, lastName } = friend;
+
   return (
     <div className='bg-window rounded-l-2xl col-start-9 col-span-2 flex flex-col items-center overflow-scroll'>
       <Profile />
-      <h1 className='mx-8 text-green-500'>@{username}</h1>
+      <h1>
+        {firstName} {lastName}
+      </h1>
+      <h1 className='mx-8 b-8 text-green-500'>@{username}</h1>
+
       <NavLink to={`/${username}`}>
         <div className='flex items-center gap-2'>
-          <h1>Go To Profile</h1>
-          <FaArrowRight />
+          <h1 className='text-xs text-gray-300'>Go To Profile</h1>
+          <FaArrowRight className='text-gray-300' />
         </div>
       </NavLink>
       <h1 className='m-8'>Shared Media</h1>

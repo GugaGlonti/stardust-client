@@ -22,7 +22,7 @@ export default function RootNavigation() {
       {/** @ColoBar */}
       <ColorBar />
 
-      <div className='h-16 shadow-lg  flex justify-between items-center px-32 hd:px-96'>
+      <div className='h-5vh shadow-lg  flex justify-between items-center px-32 hd:px-96'>
         {/** @Navigation left */}
         <div className='flex justify-between gap-4 h-full'>
           <NavButton to=''>Home</NavButton>
