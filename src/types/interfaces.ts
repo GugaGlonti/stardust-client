@@ -50,3 +50,9 @@ export interface Notification {
   body?: string;
   link?: string;
 }
+
+export interface ChatIdentifier {
+  id: string;
+  username: string;
+  friend: string;
+}
