@@ -28,8 +28,9 @@ export default function ProfileHeaderRightSide({ ownProfile, loggedIn, isFriend,
   const { username } = useLoaderData() as User;
 
   useEffect(() => {
+    if (!loggedIn || ownProfile) return;
     (async () => setChatId(await ChatService.getchatIdentifier(username, ownUsername)))();
-  }, [username, ownUsername]);
+  }, [username, ownUsername, loggedIn, ownProfile]);
 
   function sendFriendRequest() {
     setIsFriendRequestSent(true);

@@ -1,7 +1,11 @@
 import { useLoaderData } from 'react-router';
 
 export default function MessageMain() {
-  const chatId = useLoaderData() as string;
+  const [id, username] = useLoaderData() as [string, string];
 
-  return <div className='bg-window col-start-4 col-span-4 rounded-2xl'>{chatId}</div>;
+  return (
+    <div className='bg-window col-start-4 col-span-4 rounded-2xl'>
+      {id} {username}
+    </div>
+  );
 }
