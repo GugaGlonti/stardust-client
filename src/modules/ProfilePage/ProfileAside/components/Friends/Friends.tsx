@@ -22,7 +22,6 @@ export default function Friends({ profileData, ...props }: FriendsProps) {
       setLoading(false);
     })();
     return () => {
-      console.log('cleaning up friends');
       setFriends([]);
       setLoading(true);
     };

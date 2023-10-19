@@ -81,5 +81,5 @@ export default function App() {
 
 function ErrorBoundary() {
   const error = useRouteError() as Error;
-  return <div className='text-xl'>{error.message}</div>;
+  return <div className='flex justify-center m-32 text-xl'>{error.message}</div>;
 }

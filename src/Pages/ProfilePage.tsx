@@ -14,6 +14,7 @@ import ProfileMain from '../modules/ProfilePage/ProfileMain/ProfileMain';
 export default function ProfilePage() {
   const profileData = useLoaderData() as User;
   const context = useContext(authContext);
+
   if (!profileData) return null;
 
   const { loggedInUser } = context;

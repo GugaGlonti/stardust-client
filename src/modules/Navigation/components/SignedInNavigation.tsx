@@ -17,21 +17,12 @@ export default function SignedInNavigation({ username, notificationCount }: Sign
 
   const [isHovering, setIsHovering] = useState<boolean>(false);
 
+  const toProfilePage = () => navigate(`/${username}`);
+  const enterHover = () => setIsHovering(true);
+  const leaveHover = () => setIsHovering(false);
   function signOutHandler() {
     localStorage.removeItem('token');
     window.location.reload();
-  }
-
-  function toProfilePage() {
-    navigate(`/${username}`);
-  }
-
-  function enterHover() {
-    setIsHovering(true);
-  }
-
-  function leaveHover() {
-    setIsHovering(false);
   }
 
   return (

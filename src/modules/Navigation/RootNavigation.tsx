@@ -1,21 +1,14 @@
-import { useContext } from 'react';
-import { authContext } from '../../store/auth.provider';
-
 import NavButton from './components/NavButton';
 import ColorBar from '../../components/UTIL/ColorBar';
 import SearchBar from '../SearchBar/SearchBar';
 
 import SignedInNavigation from './components/SignedInNavigation';
 import SignedOutNavigation from './components/SignedOutNavigation';
+import useCurrentUser from '../../hooks/useCurrentUser';
 
 export default function RootNavigation() {
-  const context = useContext(authContext);
-
-  const { loggedInUser } = context;
-
-  const username = loggedInUser?.username || '';
-  const loggedIn = username !== '';
-  const notificationCount = loggedInUser?.notificationCount || 0;
+  const loggedInUser = useCurrentUser();
+  const { username, notificationCount } = loggedInUser;
 
   return (
     <>
@@ -37,7 +30,7 @@ export default function RootNavigation() {
 
         {/** @Navigation right */}
         <div className='flex justify-between items-center gap-4 h-full'>
-          {!!loggedIn ? (
+          {!!username ? (
             <SignedInNavigation
               username={username}
               notificationCount={notificationCount}

@@ -1,9 +1,9 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ChatService from '../../../../services/chat.service';
 import { Message } from '../../../../types/interfaces';
-import { authContext } from '../../../../store/auth.provider';
 import OwnMessage from './Messages/OwnMessage';
 import FriendMessage from './Messages/FriendMessage';
+import useCurrentUser from '../../../../hooks/useCurrentUser';
 
 interface ChatProps {
   chatId: string;
@@ -12,11 +12,10 @@ interface ChatProps {
 export default function Chat({ chatId, ...props }: ChatProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [refresh, triggerRefresh] = useState<number>(Date.now());
+
   const div = useRef<HTMLDivElement>(null);
 
-  const context = useContext(authContext);
-  const { username } = context.loggedInUser || {};
-
+  const { username } = useCurrentUser();
   ChatService.connect(triggerRefresh);
 
   useEffect(() => {

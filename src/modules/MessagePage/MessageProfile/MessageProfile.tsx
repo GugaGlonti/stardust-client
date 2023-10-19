@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { LoaderFunction, useLoaderData } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import { User } from '../../../types/interfaces';
 
 import UserService from '../../../services/user.service';
 
+import { FaArrowRight } from 'react-icons/fa';
+
 import Media from './components/Media';
 import Profile from './components/Profile';
-import { NavLink } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa';
 
 export default function MessageProfile() {
   const messageProfileLoaderData = useLoaderData() as string;

@@ -1,18 +1,17 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import NavBar from './components/NavBar';
 
 import ChatService from '../../../services/chat.service';
 
-import { authContext } from '../../../store/auth.provider';
-
 import ChatSearchBar from './components/ChatSearchBar';
 import ChatSelectors from './components/ChatSelectors';
 import { ChatIdentifier } from '../../../types/interfaces';
 
+import useCurrentUser from '../../../hooks/useCurrentUser';
+
 export default function MessageAside() {
-  const context = useContext(authContext);
-  const { friends, username } = context.loggedInUser || {};
+  const { friends, username } = useCurrentUser();
 
   const [chatIdentifiers, setChatIdentifiers] = useState<ChatIdentifier[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

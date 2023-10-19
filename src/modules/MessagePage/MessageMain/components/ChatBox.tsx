@@ -1,26 +1,20 @@
 import { FaPaperPlane, FaPlus } from 'react-icons/fa';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import ChatService from '../../../../services/chat.service';
-import { authContext } from '../../../../store/auth.provider';
+import useCurrentUser from '../../../../hooks/useCurrentUser';
 
 interface ChatBoxProps {
   chatId: string;
 }
 
 export default function ChatBox({ chatId, ...props }: ChatBoxProps) {
-  const context = useContext(authContext);
-  const { username: sender } = context.loggedInUser || {};
-
+  const { username: sender } = useCurrentUser();
   const [message, setMessage] = useState('');
 
   function sendHandler(e: any) {
     e.preventDefault();
     ChatService.sendMessage(chatId, message, sender as string);
     setMessage('');
-  }
-
-  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    setMessage(e.target.value);
   }
 
   return (
@@ -34,7 +28,7 @@ export default function ChatBox({ chatId, ...props }: ChatBoxProps) {
         placeholder='type a message'
         {...props}
         value={message}
-        onChange={changeHandler}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}
       />
       <FaPaperPlane onClick={sendHandler} />
     </form>

@@ -1,12 +1,8 @@
-export default function RoulettePage() {
-  return <div>RoulettePage</div>;
-}
+import AuthBlock from '../components/AuthBlock';
+import useAuthenticate from '../hooks/useAuthenticate';
 
-/**
-    <div>
-        <iframe
-            src="../Rudlof-OG-Remaster/index.html"
-            title="rudlof"
-        />
-    </div>
- */
+export default function RoulettePage() {
+  if (!useAuthenticate()) return <AuthBlock />;
+
+  return <div>Roulette Pege</div>;
+}
