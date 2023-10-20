@@ -16,12 +16,15 @@ export default function MessageAside() {
   const [chatIdentifiers, setChatIdentifiers] = useState<ChatIdentifier[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const [refresh, triggerRefresh] = useState<number>(Date.now());
+  ChatService.connect(triggerRefresh);
+
   useEffect(() => {
     (async () => {
       setChatIdentifiers(await ChatService.getChatIdentifiers(friends as string[], username as string));
       setLoading(false);
     })();
-  }, [friends, username]);
+  }, [friends, username, refresh]);
 
   if (loading) return <h1 className='p-8'>loading...</h1>;
   if (!chatIdentifiers.length) return <h1 className='p-8'>chats could not be fetched</h1>;

@@ -10,12 +10,13 @@ interface ChatProps {
 }
 
 export default function Chat({ chatId, ...props }: ChatProps) {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [refresh, triggerRefresh] = useState<number>(Date.now());
+  const { username } = useCurrentUser();
 
   const div = useRef<HTMLDivElement>(null);
 
-  const { username } = useCurrentUser();
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [refresh, triggerRefresh] = useState<number>(Date.now());
+
   ChatService.connect(triggerRefresh);
 
   useEffect(() => {

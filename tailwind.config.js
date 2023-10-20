@@ -33,6 +33,8 @@ module.exports = {
         '30vw': '30vw',
         '20vw': '20vw',
         '10vw': '10vw',
+        '7vw': '7vw',
+        '5vw': '5vw',
       },
       colors: {
         //branding

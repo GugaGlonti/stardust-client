@@ -55,6 +55,7 @@ export interface ChatIdentifier {
   id: string;
   username: string;
   friend: string;
+  lastMessage: Message;
 }
 
 export interface Message {
