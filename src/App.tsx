@@ -8,7 +8,7 @@ import RootLayout, { loadProfileData } from './Page-Layouts/RootLayout';
 import HomePage from './Page-Layouts/HomePage';
 import SignInPage from './Page-Layouts/SignInPage';
 import SignUpPage from './Page-Layouts/SignUpPage';
-import JokerPage from './Page-Layouts/JokerPage';
+import JokerPageLayout from './Page-Layouts/JokerPageLayout';
 import RoulettePage from './Page-Layouts/RoulettePage';
 import ProfilePage, { profilePageLoader } from './Page-Layouts/ProfilePage';
 import SettingsPage from './Page-Layouts/SettingsPage';
@@ -30,7 +30,12 @@ const router = createBrowserRouter([
 
       
       /** @page Joker Game */
-      { path: 'joker', id: 'joker', element: <JokerPage /> },
+      { path: 'joker', id: 'joker', element: <JokerPageLayout />, children: [
+
+        { path: '', id: 'create-game', element: <h1>create game</h1> },
+
+        { path: ':gameId', id: 'game', element: <h1>game</h1> }
+      ] },
 
       
       /** @page Roulette Game */

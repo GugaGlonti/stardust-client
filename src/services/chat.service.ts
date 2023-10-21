@@ -1,5 +1,5 @@
 import { Socket, io } from 'socket.io-client';
-import { ChatIdentifier, Message } from '../types/interfaces';
+import { ChatIdentifier } from '../types/interfaces';
 
 import axiosService from './axios.instance';
 const url = 'http://localhost:3000/api/chat/';
@@ -19,17 +19,5 @@ export default class ChatService {
 
   static async getchatIdentifier(friend: string, username: string): Promise<ChatIdentifier> {
     return this.getChatIdentifiers([friend], username).then(chatIdentifiers => chatIdentifiers[0]);
-  }
-
-  static async sendMessage(chatId: string, text: string, sender: string) {
-    this.socket.emit('sendMessage', { chatId, text, sender });
-  }
-
-  static async getChatMessages(chatId: string, setMessages: (messages: any) => void) {
-    this.socket.emit('getChatMessages', chatId, (messages: Message) => setMessages(messages));
-  }
-
-  static async connect(triggerRefresh: any) {
-    this.socket.on('newMessage', () => triggerRefresh(Date.now()));
   }
 }

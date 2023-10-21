@@ -1,6 +1,8 @@
-import { FaPaperPlane, FaPlus } from 'react-icons/fa';
 import { useState } from 'react';
-import ChatService from '../../../../services/chat.service';
+import { FaPaperPlane, FaPlus } from 'react-icons/fa';
+
+import SocketService from '../../../../services/socket.service';
+
 import useCurrentUser from '../../../../hooks/useCurrentUser';
 
 interface ChatBoxProps {
@@ -13,7 +15,7 @@ export default function ChatBox({ chatId, ...props }: ChatBoxProps) {
 
   function sendHandler(e: any) {
     e.preventDefault();
-    ChatService.sendMessage(chatId, message, sender as string);
+    SocketService.sendMessage(chatId, message, sender as string);
     setMessage('');
   }
 

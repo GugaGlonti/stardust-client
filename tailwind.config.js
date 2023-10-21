@@ -52,6 +52,8 @@ module.exports = {
 
         background: '#1F2937',
 
+        'joker-bg': '#288F5A',
+
         //grays
         dark: '#1F2937',
         'dark-light': '#6B7280',

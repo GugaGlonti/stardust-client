@@ -9,6 +9,7 @@ import ChatSelectors from './components/ChatSelectors';
 import { ChatIdentifier } from '../../../types/interfaces';
 
 import useCurrentUser from '../../../hooks/useCurrentUser';
+import SocketService from '../../../services/socket.service';
 
 export default function MessageAside() {
   const { friends, username } = useCurrentUser();
@@ -17,7 +18,10 @@ export default function MessageAside() {
   const [loading, setLoading] = useState<boolean>(true);
 
   const [refresh, triggerRefresh] = useState<number>(Date.now());
-  ChatService.connect(triggerRefresh);
+
+  useEffect(() => {
+    SocketService.boundTriggerToEvent('newMessage', triggerRefresh);
+  }, []);
 
   useEffect(() => {
     (async () => {

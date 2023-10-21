@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import ChatService from '../../../../services/chat.service';
+
+import SocketService from '../../../../services/socket.service';
+
+import useCurrentUser from '../../../../hooks/useCurrentUser';
+
 import { Message } from '../../../../types/interfaces';
+
 import OwnMessage from './Messages/OwnMessage';
 import FriendMessage from './Messages/FriendMessage';
-import useCurrentUser from '../../../../hooks/useCurrentUser';
 
 interface ChatProps {
   chatId: string;
@@ -15,13 +19,16 @@ export default function Chat({ chatId, ...props }: ChatProps) {
   const div = useRef<HTMLDivElement>(null);
 
   const [messages, setMessages] = useState<Message[]>([]);
+
   const [refresh, triggerRefresh] = useState<number>(Date.now());
 
-  ChatService.connect(triggerRefresh);
+  //setup
+  useEffect(() => {
+    SocketService.boundTriggerToEvent('newMessage', triggerRefresh);
+  }, []);
 
   useEffect(() => {
-    ChatService.getChatMessages(chatId, setMessages);
-    return () => setMessages([]);
+    SocketService.getChatMessages(chatId, setMessages);
   }, [chatId, refresh]);
 
   useEffect(() => {
