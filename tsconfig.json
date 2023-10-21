@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@components": ["./src/components/*"],
-      "@pages": ["src/Page-Layouts/*"],
-      "@modules": ["./src/modules/*"]
+      // TODO: Add paths
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
