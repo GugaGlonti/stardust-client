@@ -6,7 +6,8 @@ interface ColorBarProps {
 }
 
 export default function ColorBar({ className, height = '2', from = 'primary-light', to = 'secondary-dark', ...props }: ColorBarProps) {
-  const classes = `h-${height} bg-gradient-to-r from-${from} to-${to} background-animate ${className}`;
+  // FIXME: from and to should be injected into the className
+  const classes = `h-${height} bg-gradient-to-r from-primary-light to-secondary-dark background-animate ${className}`;
 
   return (
     <div
