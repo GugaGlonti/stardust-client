@@ -1,26 +1,16 @@
-import { useContext, useEffect } from 'react';
-import { LoaderFunction, Outlet, useLoaderData } from 'react-router';
+import { LoaderFunction, Outlet } from 'react-router';
 
 import AuthService from '../services/auth.service';
-
-import { User } from '../types/interfaces';
 
 import RootNavigation from '../modules/Navigation/RootNavigation';
 import Footer from '../modules/Footer/Footer';
 
-import { authContext } from '../store/auth.provider';
 import NotificationService from '../services/notification.service';
 import UserService from '../services/user.service';
+import useLogin from '../hooks/useLogin';
 
 export default function RootLayout() {
-  const user = useLoaderData() as User;
-
-  const context = useContext(authContext);
-  const { setLoggedInUser: setUser } = context;
-
-  useEffect(() => {
-    (async () => user && setUser && setUser(user))();
-  });
+  useLogin();
 
   return (
     <>

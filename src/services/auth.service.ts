@@ -4,6 +4,7 @@ import { User } from '../types/interfaces';
 
 import { SignInFormData } from '../modules/Authentication/SignInForm/SignInForm';
 import { SignUpFormData } from '../modules/Authentication/SignUpForm/SignUpForm';
+import SocketService from './socket.service';
 
 const url = 'http://localhost:3000/api/auth';
 
@@ -26,6 +27,9 @@ export default class AuthService {
       const { token, user } = data;
 
       localStorage.setItem('token', token);
+
+      await SocketService.leaveRooms();
+      await SocketService.joinRoom(user.username);
 
       return user;
     } catch (error) {

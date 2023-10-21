@@ -4,9 +4,23 @@ import { Message } from '../types/interfaces';
 export default class SocketService {
   static socket: Socket = io('http://localhost:3000', { transports: ['websocket'] });
 
+  static async joinRoom(room: string) {
+    this.socket.emit('joinRoom', room);
+  }
+
+  static async leaveRoom(room: string) {
+    this.socket.emit('leaveRoom', room);
+  }
+
+  static async leaveRooms() {
+    this.socket.emit('leaveRooms');
+  }
+
   static async boundTriggerToEvent(event: string, triggerRefresh: any) {
     this.socket.on(event, () => triggerRefresh(Date.now()));
   }
+
+  /** ==================== // @messages // ==================== */
 
   static async sendMessage(chatId: string, text: string, sender: string) {
     this.socket.emit('sendMessage', { chatId, text, sender });
