@@ -7,7 +7,7 @@ export default function MessagePageLayout() {
   if (!useAuthenticate()) return <AuthBlock />;
 
   return (
-    <div className='h-80vh mt-16 grid grid-cols-10'>
+    <div className='h-80vh my-24 grid grid-cols-10'>
       <MessageAside />
       <Outlet />
     </div>
