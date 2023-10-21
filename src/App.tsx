@@ -49,8 +49,6 @@ const router = createBrowserRouter([
       /** @page Messages Page */
       { path: 'messages', id: 'messages', element: <MessagePageLayout />, children: [
 
-        { path: '', id: 'chats' },
-
         { path: ':chatId', id: 'chat', element: <><MessageMain /><MessageProfile /></>, loader: messageProfileLoader },
       ] },
 
