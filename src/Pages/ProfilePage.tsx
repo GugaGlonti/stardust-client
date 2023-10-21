@@ -7,9 +7,9 @@ import { User } from '../types/interfaces';
 
 import { authContext } from '../store/auth.provider';
 
-import ProfileHeader from '../modules/ProfilePage/ProfileHeader/ProfileHeader';
-import ProfileAside from '../modules/ProfilePage/ProfileAside/ProfileAside';
-import ProfileMain from '../modules/ProfilePage/ProfileMain/ProfileMain';
+import ProfileHeader from '../modules/Profile/ProfileHeader/ProfileHeader';
+import ProfileAside from '../modules/Profile/ProfileAside/ProfileAside';
+import ProfileMain from '../modules/Profile/ProfileMain/ProfileMain';
 
 export default function ProfilePage() {
   const profileData = useLoaderData() as User;

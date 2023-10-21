@@ -1,4 +1,4 @@
-import HomePageBanner from '../modules/HomePageBanner/HomePageBanner';
+import HomePageBanner from '../modules/Banner/HomePageBanner';
 
 export default function HomePage() {
   return (

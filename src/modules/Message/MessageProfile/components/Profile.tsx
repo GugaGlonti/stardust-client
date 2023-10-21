@@ -1,4 +1,4 @@
-import ProfilePicture from '../../../ProfilePage/ProfileAside/components/Friends/ProfilePicture';
+import ProfilePicture from '../../../Profile/ProfileAside/components/Friends/ProfilePicture';
 
 export default function Profile() {
   return (

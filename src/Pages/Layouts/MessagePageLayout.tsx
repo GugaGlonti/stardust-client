@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import MessageAside from '../../modules/MessagePage/MessageAside/MessageAside';
+import MessageAside from '../../modules/Message/MessageAside/MessageAside';
 import AuthBlock from '../../components/AuthBlock';
 import useAuthenticate from '../../hooks/useAuthenticate';
 

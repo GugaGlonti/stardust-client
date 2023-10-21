@@ -14,9 +14,9 @@ import ProfilePage, { profilePageLoader } from './Pages/ProfilePage';
 import SettingsPage from './Pages/SettingsPage';
 import NotificationPage from './Pages/NotificationPage';
 import { AuthProvider } from './store/auth.provider';
-import MessageMain from './modules/MessagePage/MessageMain/MessageMain';
+import MessageMain from './modules/Message/MessageMain/MessageMain';
 import MessagePageLayout from './Pages/Layouts/MessagePageLayout';
-import MessageProfile, { messageProfileLoader } from './modules/MessagePage/MessageProfile/MessageProfile';
+import MessageProfile, { messageProfileLoader } from './modules/Message/MessageProfile/MessageProfile';
 
 //prettier-ignore
 const router = createBrowserRouter([
