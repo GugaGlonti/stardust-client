@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@components": ["./src/components/*"],
-      "@pages": ["./src/pages/*"],
+      "@pages": ["src/Page-Layouts/*"],
       "@modules": ["./src/modules/*"]
     },
     "target": "es5",

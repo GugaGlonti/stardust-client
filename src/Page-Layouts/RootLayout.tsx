@@ -1,16 +1,16 @@
 import { useContext, useEffect } from 'react';
 import { LoaderFunction, Outlet, useLoaderData } from 'react-router';
 
-import AuthService from '../../services/auth.service';
+import AuthService from '../services/auth.service';
 
-import { User } from '../../types/interfaces';
+import { User } from '../types/interfaces';
 
-import RootNavigation from '../../modules/Navigation/RootNavigation';
-import Footer from '../../modules/Footer/Footer';
+import RootNavigation from '../modules/Navigation/RootNavigation';
+import Footer from '../modules/Footer/Footer';
 
-import { authContext } from '../../store/auth.provider';
-import NotificationService from '../../services/notification.service';
-import UserService from '../../services/user.service';
+import { authContext } from '../store/auth.provider';
+import NotificationService from '../services/notification.service';
+import UserService from '../services/user.service';
 
 export default function RootLayout() {
   const user = useLoaderData() as User;

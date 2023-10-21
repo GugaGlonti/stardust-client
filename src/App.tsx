@@ -3,19 +3,19 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { QueryClientProvider, QueryClient } from 'react-query';
 
-import RootLayout, { loadProfileData } from './Pages/Layouts/RootLayout';
+import RootLayout, { loadProfileData } from './Page-Layouts/RootLayout';
 
-import HomePage from './Pages/HomePage';
-import SignInPage from './Pages/SignInPage';
-import SignUpPage from './Pages/SignUpPage';
-import JokerPage from './Pages/JokerPage';
-import RoulettePage from './Pages/RoulettePage';
-import ProfilePage, { profilePageLoader } from './Pages/ProfilePage';
-import SettingsPage from './Pages/SettingsPage';
-import NotificationPage from './Pages/NotificationPage';
+import HomePage from './Page-Layouts/HomePage';
+import SignInPage from './Page-Layouts/SignInPage';
+import SignUpPage from './Page-Layouts/SignUpPage';
+import JokerPage from './Page-Layouts/JokerPage';
+import RoulettePage from './Page-Layouts/RoulettePage';
+import ProfilePage, { profilePageLoader } from './Page-Layouts/ProfilePage';
+import SettingsPage from './Page-Layouts/SettingsPage';
+import NotificationPage from './Page-Layouts/NotificationPage';
 import { AuthProvider } from './store/auth.provider';
 import MessageMain from './modules/Message/MessageMain/MessageMain';
-import MessagePageLayout from './Pages/Layouts/MessagePageLayout';
+import MessagePageLayout from './Page-Layouts/MessagePageLayout';
 import MessageProfile, { messageProfileLoader } from './modules/Message/MessageProfile/MessageProfile';
 
 //prettier-ignore
