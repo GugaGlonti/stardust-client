@@ -14,15 +14,12 @@ interface ChatProps {
 }
 
 export default function Chat({ chatId, ...props }: ChatProps) {
-  const { username } = useCurrentUser();
-
   const div = useRef<HTMLDivElement>(null);
-
   const [messages, setMessages] = useState<Message[]>([]);
-
   const [refresh, triggerRefresh] = useState<number>(Date.now());
 
-  //setup
+  const { username } = useCurrentUser();
+
   useEffect(() => {
     SocketService.boundTriggerToEvent('newMessage', triggerRefresh);
   }, []);
