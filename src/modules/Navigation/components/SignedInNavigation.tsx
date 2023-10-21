@@ -6,6 +6,7 @@ import NavButton from './NavButton';
 import NotificationIcon from '../../../assets/svg/NotificationIcon';
 import SettingsIcon from '../../../assets/svg/SettingsIcon';
 import ChatIcon from '../../../assets/svg/ChatIcon';
+import SocketService from '../../../services/socket.service';
 
 export interface SignedInNavigationProps {
   username: string;
@@ -22,6 +23,7 @@ export default function SignedInNavigation({ username, notificationCount }: Sign
   const leaveHover = () => setIsHovering(false);
   function signOutHandler() {
     localStorage.removeItem('token');
+    SocketService.leaveRooms();
     window.location.reload();
   }
 
