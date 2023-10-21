@@ -12,6 +12,7 @@ export default class SocketService {
     this.socket.emit('sendMessage', { chatId, text, sender });
   }
 
+  // TODO: add getChatMessages with fetch and every follwing message with socket
   static async getChatMessages(chatId: string, setMessages: (messages: any) => void) {
     this.socket.emit('getChatMessages', chatId, (messages: Message) => setMessages(messages));
   }
