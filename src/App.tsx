@@ -17,7 +17,6 @@ import { AuthProvider } from './store/auth.provider';
 import MessageMain from './modules/Message/MessageMain/MessageMain';
 import MessagePageLayout from './Page-Layouts/MessagePageLayout';
 import MessageProfile, { messageProfileLoader } from './modules/Message/MessageProfile/MessageProfile';
-import YourCards from './modules/Joker/YourCards/YourCards';
 
 //prettier-ignore
 const router = createBrowserRouter([
