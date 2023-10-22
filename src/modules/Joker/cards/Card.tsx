@@ -9,6 +9,9 @@ interface CardProps {
 }
 
 export default function Card({ id, flipped = false, isClickable = true, onClick }: CardProps) {
+  if (onClick) {
+    isClickable = true;
+  }
   if (!id && !flipped) {
     return <h1 className='text-red-500 bg-gray-200'>INVALID CARD</h1>;
   }
