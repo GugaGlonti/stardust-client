@@ -1,4 +1,4 @@
-export class JokerService {
+export default class JokerService {
   static getSuit(id: string) {
     return id.split('')[0];
   }

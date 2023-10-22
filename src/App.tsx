@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       /** @page Joker Game */
       { path: 'joker', id: 'joker', element: <JokerPageLayout />, children: [
 
-        { path: '', id: 'create-game', element: <><YourCards/></> },
+        { path: '', id: 'create-game', element: <>create game</> },
 
         { path: ':gameId', id: 'game', element: <h1>game</h1> }
       ] },

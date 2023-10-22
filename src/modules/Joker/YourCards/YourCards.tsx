@@ -1,20 +1,28 @@
 import Card from '../cards/Card';
+import { CardIDs } from '../../../assets/cards/__card.dictionary';
 
-export default function YourCards() {
+interface YourCardsProps {
+  cardIds: CardIDs[];
+}
+
+export default function YourCards({ cardIds }: YourCardsProps) {
   return (
     <>
-      <div>
-        <h1>Your Cards</h1>
-        <Card id='c14' />
-        <Card id='s14' />
-        <Card id='h14' />
-        <Card id='d14' />
-        <Card id='__' />
-        <Card id='c2' />
-        <Card id='c3' />
-        <Card id='c4' />
-        <Card id='c5' />
-        <Card id='c6' />
+      <div className='h-32' />
+      <div
+        className={`
+          flex
+          justify-center
+          w-full
+          bg-window
+          rounded-md
+          shadow-xl
+          p-2
+          flex-wrap
+        `}>
+        {cardIds.map(cardId => (
+          <Card id={cardId} />
+        ))}
       </div>
     </>
   );
