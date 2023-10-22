@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { User } from '../../../../types/interfaces';
 import UserService from '../../../../services/user.service';
-import ProfilePicture from '../../../../assets/svg/ProfilePicture';
+import ProfilePicture from '../../../../components/ProfilePicture';
 
 interface HeaderProps {
   username: string;
@@ -29,7 +29,9 @@ export default function Header({ username, ...props }: HeaderProps) {
       className='bg-window-dark w-full rounded-t-2xl'
       {...props}>
       <div className='flex p-4 items-center'>
-        <ProfilePicture className='h-8 mx-4' />
+        <div>
+          <ProfilePicture url='' />
+        </div>
         <div className='ml-4'>
           <div>
             {firstName} {lastName}

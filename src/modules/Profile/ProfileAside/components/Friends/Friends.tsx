@@ -34,7 +34,7 @@ export default function Friends({ profileData, ...props }: FriendsProps) {
       <div className='my-8'>Friends ({friends.length})</div>
 
       <div
-        className='grid grid-cols-3'
+        className='grid grid-cols-3 gap-2'
         {...props}>
         {friends.map((friend, i) => (
           <Friend

@@ -1,6 +1,6 @@
-import ProfilePicture from '../../../../assets/svg/ProfilePicture';
 import { NavLink } from 'react-router-dom';
 import { Message } from '../../../../types/interfaces';
+import ProfilePicture from '../../../../components/ProfilePicture';
 
 interface ChatSelectorProps {
   id: string;
@@ -23,8 +23,8 @@ export default function ChatSelector({ id, friend, lastMessage, ...props }: Chat
         className={({ isActive }) => (isActive ? activeclasses : inactiveClasses)}
         {...props}>
         <div className='flex h-5vh'>
-          <div>
-            <ProfilePicture className='h-5vh w-5vw' />
+          <div className='w-5vh h-5vh mx-4'>
+            <ProfilePicture url='' />
           </div>
           <div className='flex flex-col h-full overflow-hidden w-full'>
             <h1 className='text-lg'>@{friend}</h1>
