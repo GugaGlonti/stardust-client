@@ -52,7 +52,15 @@ module.exports = {
 
         background: '#1F2937',
 
+        username: '#4ade80',
+
+        'gold-light': '#fcd34d',
+        gold: '#fbbf24',
+        'gold-dark': '#f59e0b',
+
+        'joker-bg-light': '#2D9C5A',
         'joker-bg': '#288F5A',
+        'joker-bg-dark': '#1F7C4F',
 
         //grays
         dark: '#1F2937',

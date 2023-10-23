@@ -15,6 +15,7 @@ export default function ChatBox({ chatId, ...props }: ChatBoxProps) {
 
   function sendHandler(e: any) {
     e.preventDefault();
+    if (!message) return;
     SocketService.sendMessage(chatId, message, sender as string);
     setMessage('');
   }

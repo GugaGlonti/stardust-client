@@ -1,3 +1,4 @@
+import ColorBar from '../../../components/UTIL/ColorBar';
 import NotificationService from '../../../services/notification.service';
 import { User } from '../../../types/interfaces';
 
