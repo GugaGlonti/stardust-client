@@ -22,15 +22,15 @@ export default function ChatSelector({ id, friend, lastMessage, ...props }: Chat
         to={`/messages/${id}-${friend}`}
         className={({ isActive }) => (isActive ? activeclasses : inactiveClasses)}
         {...props}>
-        <div className='flex h-5vh'>
-          <div className='w-5vh h-5vh mx-4'>
+        <div className='flex'>
+          <div className='mx-2 w-20 h-16'>
             <ProfilePicture url='' />
           </div>
           <div className='flex flex-col h-full overflow-hidden w-full'>
             <h1 className='text-lg'>@{friend}</h1>
             <div className='flex justify-between items-start w-full'>
-              <h1 className='text-xs text-white'>{!!lastText ? lastText : ''}</h1>
-              <h1 className='text-xs text-gray-400 mr-5'>{!!lastTimestamp ? lastTimestamp : ''}</h1>
+              <h1 className='text-xs text-white'>{!!lastText && lastText}</h1>
+              <h1 className='text-xs text-gray-400 mr-5'>{!!lastTimestamp && lastTimestamp}</h1>
             </div>
           </div>
         </div>

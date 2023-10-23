@@ -29,9 +29,6 @@ export default function Header({ username, ...props }: HeaderProps) {
       className='bg-window-dark w-full rounded-t-2xl'
       {...props}>
       <div className='flex p-4 items-center'>
-        <div>
-          <ProfilePicture url='' />
-        </div>
         <div className='ml-4'>
           <div>
             {firstName} {lastName}
