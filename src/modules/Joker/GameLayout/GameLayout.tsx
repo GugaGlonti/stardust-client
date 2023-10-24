@@ -2,6 +2,7 @@ import { useState } from 'react';
 import TheirCards from '../TheirCards/TheirCards';
 import YourCards from '../YourCards/YourCards';
 import ProfilePicture from '../../../components/ProfilePicture';
+import Table from './Table';
 
 export default function GameLayout() {
   const [cardcount, setCardcount] = useState(9);
@@ -53,7 +54,10 @@ export default function GameLayout() {
       />
 
       {/** ========== // =========== // @Table // =========== // ========== */}
-      <div className='bg-window rounded-2xl col-start-3 col-span-8 row-start-2 row-span-3' />
+      <Table
+        cards={['_1', 'd7', '__', 'c12']}
+        className='bg-window col-start-3 col-span-8 row-start-2 row-span-3'
+      />
 
       {/** ========== // =========== @Your  Cards =========== // ========== */}
       <div className='bg-window row-start-6 col-span-full' />
