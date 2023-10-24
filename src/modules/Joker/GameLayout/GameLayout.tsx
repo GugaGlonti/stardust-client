@@ -7,7 +7,8 @@ import Table from './Table';
 export default function GameLayout() {
   const [cardcount, setCardcount] = useState(9);
 
-  const imageClasses = `bg-window h-3/4 aspect-square rounded-full overflow-hidden border-4 border-gold-dark`;
+  const outerImageClasses = `flex justify-center items-center`;
+  const imageClasses = `bg-window h-3/4 aspect-square rounded-full overflow-hidden border-4 border-gold-dark absolute`;
 
   return (
     <div className='grid grid-cols-12 grid-rows-6 h-full w-full overflow-hidden'>
@@ -19,8 +20,8 @@ export default function GameLayout() {
       />
 
       {/** ========== // ========== @Top Player ========== // ========== */}
-      <div className='flex justify-center items-center col-start-6 col-span-2 row-start-1 z-30 relative'>
-        <div className={`${imageClasses} aspect-square absolute`}>
+      <div className={`${outerImageClasses} flex justify-center items-center col-start-6 col-span-2 row-start-1 z-30 relative`}>
+        <div className={`${imageClasses}`}>
           <ProfilePicture url='' />
         </div>
       </div>
@@ -30,8 +31,8 @@ export default function GameLayout() {
       />
 
       {/** ========== // ========== @Left Player ========== // ========== */}
-      <div className='flex justify-center items-center col-start-1 row-start-3 z-30 relative'>
-        <div className={`${imageClasses} aspect-square absolute`}>
+      <div className={`${outerImageClasses} items-center col-start-1 row-start-3 z-30 relative`}>
+        <div className={`${imageClasses}`}>
           <ProfilePicture url='' />
         </div>
       </div>
@@ -42,8 +43,8 @@ export default function GameLayout() {
       />
 
       {/** ========== // ========== @Right Player ========== // ========== */}
-      <div className='flex justify-center items-center col-start-12 row-start-3 z-30 relative'>
-        <div className={`${imageClasses} aspect-square absolute`}>
+      <div className={`${outerImageClasses}  items-center col-start-12 row-start-3 z-30 relative`}>
+        <div className={`${imageClasses}`}>
           <ProfilePicture url='' />
         </div>
       </div>
