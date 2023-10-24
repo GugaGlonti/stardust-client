@@ -1,4 +1,4 @@
-import { Message } from '../../../../../types/interfaces';
+import { Message } from '../../../../../types/Message';
 
 interface MessageProps {
   message: Message;

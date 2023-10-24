@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { SearchUsersData } from '../../types/interfaces';
+import { SearchUsersData } from '../../types/SearchUsersData';
 
 interface UserSearchResultProps extends SearchUsersData {
   key: number;

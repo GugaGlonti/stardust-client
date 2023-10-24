@@ -1,6 +1,6 @@
 import Button from '../../../../../components/Button';
 import NotificationService from '../../../../../services/notification.service';
-import { Notification } from '../../../../../types/interfaces';
+import { Notification } from '../../../../../types/Notification';
 
 interface InfoProps {
   notification: Notification;

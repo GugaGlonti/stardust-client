@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 
 import UserService from '../../../../../services/user.service';
 
-import { Notification, User } from '../../../../../types/interfaces';
+import { User } from '../../../../../types/User';
+import { Notification } from '../../../../../types/Notification';
 import Button from '../../../../../components/Button';
 import NotificationService from '../../../../../services/notification.service';
 

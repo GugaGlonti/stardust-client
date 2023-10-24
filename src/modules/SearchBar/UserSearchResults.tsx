@@ -1,4 +1,4 @@
-import { SearchUsersData } from '../../types/interfaces';
+import { SearchUsersData } from '../../types/SearchUsersData';
 import { UserSearchResult } from './UserSearchResult';
 
 interface UserSearchResultsProps {

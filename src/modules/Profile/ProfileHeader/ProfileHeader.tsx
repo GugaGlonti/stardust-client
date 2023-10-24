@@ -1,5 +1,5 @@
 import NotificationService from '../../../services/notification.service';
-import { User } from '../../../types/interfaces';
+import { User } from '../../../types/User';
 
 import ProfileHeaderLeftSide from './components/ProfileHeaderLeftSide';
 import ProfileHeaderRightSide from './components/ProfileHeaderRightSide';

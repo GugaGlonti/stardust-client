@@ -2,10 +2,11 @@ import { useRef } from 'react';
 import Button from '../../../components/Button';
 import InputField from '../../../components/InputField';
 import { window } from '../../../properties';
+interface GameSetupProps {
+  onSubmit: (data: any) => void;
+}
 
-interface GameSetupProps {}
-
-export default function GameSetup({ ...props }: GameSetupProps) {
+export default function GameSetup({ onSubmit, ...props }: GameSetupProps) {
   const modeRef = useRef<HTMLInputElement>(null);
   const roundRef = useRef<HTMLInputElement>(null);
   const penaltyRef = useRef<HTMLInputElement>(null);
@@ -19,6 +20,7 @@ export default function GameSetup({ ...props }: GameSetupProps) {
       round: roundRef.current?.value,
       penalty: penaltyRef.current?.value,
     });
+    onSubmit({});
   }
 
   return (

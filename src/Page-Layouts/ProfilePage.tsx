@@ -3,7 +3,7 @@ import { LoaderFunction, useLoaderData } from 'react-router';
 
 import UserService from '../services/user.service';
 
-import { User } from '../types/interfaces';
+import { User } from '../types/User';
 
 import { authContext } from '../store/auth.provider';
 

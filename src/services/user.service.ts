@@ -1,6 +1,8 @@
 import axiosService from './axios.instance';
 
-import { UpdateProfileData, SearchUsersData, User } from '../types/interfaces';
+import { User } from '../types/User';
+import { UpdateProfileData } from '../types/UpdateProfileData';
+import { SearchUsersData } from '../types/SearchUsersData';
 
 const url = 'http://localhost:3000/api/users/';
 

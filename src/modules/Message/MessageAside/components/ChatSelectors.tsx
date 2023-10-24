@@ -1,4 +1,4 @@
-import { ChatIdentifier } from '../../../../types/interfaces';
+import { ChatIdentifier } from '../../../../types/ChatIdentifier';
 import ChatSelector from './ChatSelector';
 
 interface ChatSelectorProps {

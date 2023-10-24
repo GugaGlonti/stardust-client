@@ -6,7 +6,7 @@ import ChatService from '../../../services/chat.service';
 
 import ChatSearchBar from './components/ChatSearchBar';
 import ChatSelectors from './components/ChatSelectors';
-import { ChatIdentifier } from '../../../types/interfaces';
+import { ChatIdentifier } from '../../../types/ChatIdentifier';
 
 import useCurrentUser from '../../../hooks/useCurrentUser';
 import SocketService from '../../../services/socket.service';

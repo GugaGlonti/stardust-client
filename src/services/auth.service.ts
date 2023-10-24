@@ -1,6 +1,6 @@
 import axiosService from './axios.instance';
 
-import { User } from '../types/interfaces';
+import { User } from '../types/User';
 
 import { SignInFormData } from '../modules/Authentication/SignInForm/SignInForm';
 import { SignUpFormData } from '../modules/Authentication/SignUpForm/SignUpForm';

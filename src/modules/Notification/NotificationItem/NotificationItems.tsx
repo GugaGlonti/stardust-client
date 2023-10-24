@@ -1,4 +1,4 @@
-import { Notification } from '../../../types/interfaces';
+import { Notification } from '../../../types/Notification';
 
 import NotificationItem from './components/NotificationItem';
 

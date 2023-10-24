@@ -1,4 +1,4 @@
-import { User } from '../../../types/interfaces';
+import { User } from '../../../types/User';
 
 import Friends from './components/Friends/Friends';
 import Intro from './components/Intro/Intro';

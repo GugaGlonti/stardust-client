@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink, useLoaderData } from 'react-router-dom';
 
-import { ChatIdentifier, User } from '../../../../types/interfaces';
+import { User } from '../../../../types/User';
+import { ChatIdentifier } from '../../../../types/ChatIdentifier';
 
 import ChatService from '../../../../services/chat.service';
 

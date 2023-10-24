@@ -1,4 +1,4 @@
-import { User } from '../../../../../types/interfaces';
+import { User } from '../../../../../types/User';
 
 import { BirthDayIcon } from '../icons/BirthDayIcon';
 import { EmailIcon } from '../icons/EmailIcon';

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Message } from '../../../../types/interfaces';
+import { Message } from '../../../../types/Message';
 import ProfilePicture from '../../../../components/ProfilePicture';
 
 interface ChatSelectorProps {

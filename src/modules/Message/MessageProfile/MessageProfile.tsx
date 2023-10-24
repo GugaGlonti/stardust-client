@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { LoaderFunction, useLoaderData } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
-import { User } from '../../../types/interfaces';
+import { User } from '../../../types/User';
 
 import UserService from '../../../services/user.service';
 

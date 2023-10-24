@@ -4,7 +4,7 @@ import SocketService from '../../../../services/socket.service';
 
 import useCurrentUser from '../../../../hooks/useCurrentUser';
 
-import { Message } from '../../../../types/interfaces';
+import { Message } from '../../../../types/Message';
 
 import OwnMessage from './Messages/OwnMessage';
 import FriendMessage from './Messages/FriendMessage';

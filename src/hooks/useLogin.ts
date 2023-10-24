@@ -1,5 +1,5 @@
 import { useLoaderData } from 'react-router';
-import { User } from '../types/interfaces';
+import { User } from '../types/User';
 import { useContext, useEffect } from 'react';
 import { authContext } from '../store/auth.provider';
 

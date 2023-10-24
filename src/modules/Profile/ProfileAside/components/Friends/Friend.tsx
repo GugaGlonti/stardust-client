@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { User } from '../../../../../types/interfaces';
+import { User } from '../../../../../types/User';
 import ProfilePicture from '../../../../../components/ProfilePicture';
 
 interface FriendProps {

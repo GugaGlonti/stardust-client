@@ -1,4 +1,4 @@
-import { Notification } from '../../../../types/interfaces';
+import { Notification } from '../../../../types/Notification';
 import { NotificationEnum } from '../../../../types/notification.enum';
 import FirendRequest from './NotificationTypes/FirendRequest';
 import Info from './NotificationTypes/Info';

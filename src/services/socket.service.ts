@@ -1,5 +1,5 @@
 import { Socket, io } from 'socket.io-client';
-import { Message } from '../types/interfaces';
+import { Message } from '../types/Message';
 
 export default class SocketService {
   static socket: Socket = io('http://localhost:3000', { transports: ['websocket'] });

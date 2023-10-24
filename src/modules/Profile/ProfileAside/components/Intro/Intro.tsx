@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-import { User } from '../../../../../types/interfaces';
+import { User } from '../../../../../types/User';
 import UserService from '../../../../../services/user.service';
 import EditIcon from '../../../../../assets/svg/EditIcon';
 import DefaultIntroContent from './DefaultIntroContent';
