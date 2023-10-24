@@ -5,7 +5,7 @@ import ProfilePicture from '../../../components/ProfilePicture';
 import Table from './Table';
 
 export default function GameLayout() {
-  const [cardcount, setCardcount] = useState(9);
+  const [cardcount, setCardcount] = useState<number>(9);
 
   const outerImageClasses = `flex justify-center items-center`;
   const imageClasses = `bg-window h-3/4 aspect-square rounded-full overflow-hidden border-4 border-gold-dark absolute`;
@@ -17,6 +17,8 @@ export default function GameLayout() {
         type='number'
         onChange={e => setCardcount(e.target.value as any)}
         className='bg-red-500'
+        placeholder='cardcount'
+        defaultValue={cardcount}
       />
 
       {/** ========== // ========== @Top Player ========== // ========== */}
@@ -60,11 +62,11 @@ export default function GameLayout() {
         className='bg-window col-start-3 col-span-8 row-start-2 row-span-3'
       />
 
-      {/** ========== // =========== @Your  Cards =========== // ========== */}
+      {/** ========== // ========== / @YourCards / ========== // ========== */}
       <div className='bg-window row-start-6 col-span-full' />
       <YourCards
         className={`col-start-6 col-span-2 row-start-6 z-10`}
-        cardIds={['_0', 'c12', 'c3', 'd7', '_0', 'c12', 'c3', 'd7', 'd7']}
+        cardIds={['_0', 'c12', 'c3', 'd7']}
       />
     </div>
   );

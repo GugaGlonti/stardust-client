@@ -1,9 +1,9 @@
-import { CardIDs } from '../../../assets/cards/__card.dictionary';
+import { CardID } from '../../../assets/cards/__card.dictionary';
 import Card from '../cards/Card';
 
 interface TableProps {
   className?: string;
-  cards: CardIDs[];
+  cards: CardID[];
 }
 
 // Trump, P1, P2, P3, P4

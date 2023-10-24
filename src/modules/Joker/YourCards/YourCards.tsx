@@ -1,8 +1,8 @@
 import Card from '../cards/Card';
-import { CardIDs } from '../../../assets/cards/__card.dictionary';
+import { CardID } from '../../../assets/cards/__card.dictionary';
 
 interface YourCardsProps {
-  cardIds: CardIDs[];
+  cardIds: CardID[];
   className?: string;
 }
 
@@ -23,6 +23,7 @@ export default function YourCards({ cardIds, className, ...props }: YourCardsPro
         {...props}>
         {cardIds.map(cardId => (
           <Card
+            key={cardId}
             id={cardId}
             onClick={() => {}}
           />

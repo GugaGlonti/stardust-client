@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import card, { CardIDs } from '../../../assets/cards/__card.dictionary';
+import card, { CardID } from '../../../assets/cards/__card.dictionary';
 import JokerService from '../../../services/joker.service';
 
 interface CardProps {
-  id?: CardIDs;
-  onClick?: () => void;
+  id?: CardID;
+  onClick?: (id: CardID) => void;
   rotatedLeft?: boolean;
   rotatedRight?: boolean;
   className?: string;
@@ -15,14 +15,13 @@ export default function Card({ id = '__', onClick, rotatedLeft = false, rotatedR
   const [clicked, setClicked] = useState(false);
 
   const flipped = id === '__';
-
   if (!id && !flipped) return <h1 className='text-red-500 bg-gray-200'>INVALID CARD</h1>;
 
-  let cardName = JokerService.getCardName(id as string);
+  let cardName = JokerService.getCardName(id);
 
   function clickHandler() {
     if (!onClick) return;
-    setTimeout(() => onClick(), 200);
+    setTimeout(() => onClick(id), 200);
     setClicked(true);
   }
 

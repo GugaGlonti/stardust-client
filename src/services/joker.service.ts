@@ -1,13 +1,15 @@
+import { CardID } from '../assets/cards/__card.dictionary';
+
 export default class JokerService {
-  static getSuit(id: string) {
+  static getSuit(id: CardID) {
     return id.split('')[0];
   }
 
-  static getNumber(id: string) {
+  static getNumber(id: CardID) {
     return parseInt(id.split('')[1]);
   }
 
-  static getCardName(id: string) {
+  static getCardName(id: CardID) {
     if (id === '__') return 'Flipped Card';
     if (id === '_0' || id === '_1') return 'Joker';
 

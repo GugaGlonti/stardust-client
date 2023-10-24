@@ -18,12 +18,11 @@ export default function TheirCards({ count, className, rotatedLeft = false, rota
       `}>
         <div style={{}}>
           {Array.from({ length: count }).map((_, i) => (
-            <>
-              <Card
-                style={{ transform: `translateX(${i * 1.5}rem)`, zIndex: count - i }}
-                className={`absolute top-0 left-0`}
-              />
-            </>
+            <Card
+              key={i}
+              style={{ transform: `translateX(${i * 1.5}rem)`, zIndex: count - i }}
+              className={`absolute top-0 left-0`}
+            />
           ))}
         </div>
       </div>
