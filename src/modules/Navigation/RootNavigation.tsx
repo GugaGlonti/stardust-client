@@ -15,7 +15,7 @@ export default function RootNavigation() {
       {/** @ColoBar */}
       <ColorBar />
 
-      <div className='h-5vh shadow-lg  flex justify-between items-center px-32 hd:px-96'>
+      <div className='z-50 h-5vh shadow-lg  flex justify-between items-center px-32 hd:px-96'>
         {/** @Navigation left */}
         <div className='flex justify-between gap-4 h-full'>
           <NavButton to=''>Home</NavButton>
@@ -24,12 +24,12 @@ export default function RootNavigation() {
         </div>
 
         {/** @Navigation middle */}
-        <div className='pt-3 w-1/3'>
+        <div className='z-50 pt-3 w-1/3'>
           <SearchBar />
         </div>
 
         {/** @Navigation right */}
-        <div className='flex justify-between items-center gap-4 h-full'>
+        <div className='z-50 flex justify-between items-center gap-4 h-full'>
           {!!username ? (
             <SignedInNavigation
               username={username}

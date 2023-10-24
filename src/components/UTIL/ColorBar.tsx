@@ -11,7 +11,7 @@ export default function ColorBar({ className, height = '2', from = 'primary-ligh
 
   return (
     <div
-      className={classes}
+      className={`${classes} z-50 `}
       {...props}
     />
   );

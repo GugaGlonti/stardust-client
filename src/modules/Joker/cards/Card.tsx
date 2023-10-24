@@ -4,10 +4,13 @@ import JokerService from '../../../services/joker.service';
 interface CardProps {
   id?: CardIDs;
   onClick?: () => void;
-  rotated?: boolean;
+  rotatedLeft?: boolean;
+  rotatedRight?: boolean;
+  className?: string;
+  style?: any;
 }
 
-export default function Card({ id = '__', onClick, rotated = false }: CardProps) {
+export default function Card({ id = '__', onClick, rotatedLeft = false, rotatedRight = false, className, style, ...props }: CardProps) {
   const flipped = id === '__';
 
   if (!id && !flipped) return <h1 className='text-red-500 bg-gray-200'>INVALID CARD</h1>;
@@ -19,9 +22,8 @@ export default function Card({ id = '__', onClick, rotated = false }: CardProps)
       // @ts-ignore
       src={card[id]}
       alt={cardName}
-      className={`
-        max-w-full
-        max-w-32 max-h-44
+      style={style}
+      className={`${className}
         p-1
         rounded-xl
         shadow-2xl
@@ -38,15 +40,11 @@ export default function Card({ id = '__', onClick, rotated = false }: CardProps)
             hover:-translate-y-10
             hover:scale-125 
             hover:shadow-2xl
-            hover:z-10`
+            hover:z-50`
         }
-        ${
-          !!rotated &&
-          `transform
-          rotate-90`
-        }
-
-      `}
+        ${!!rotatedLeft && `transform rotate-90`}
+        ${!!rotatedRight && `transform -rotate-90`}`}
+      {...props}
     />
   );
 }

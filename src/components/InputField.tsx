@@ -1,28 +1,37 @@
+import { ForwardedRef, forwardRef } from 'react';
+
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  type?: 'text' | 'password' | 'email';
+  type?: 'text' | 'password' | 'email' | 'number' | 'tel' | 'url';
   placeholder?: string;
 }
 
-export default function InputField({ label, type = 'text', placeholder = '', ...props }: InputFieldProps) {
+const InputField = forwardRef((props: InputFieldProps, ref: ForwardedRef<HTMLInputElement>) => {
+  const { label, type = 'text', placeholder = '', ...rest } = props;
+
   return (
     <div
-      className='rounded-md m-1 px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600'
-      {...props}>
+      className='flex items-center  border border-gray-200 rounded dark:border-gray-700'
+      {...rest}>
       {!!label && (
         <label
           htmlFor={label}
-          className='block text-xs font-medium text-gray-900'>
+          className='pl-4 mr-4'>
           {label}
         </label>
       )}
       <input
-        type='text'
-        name='name'
-        id='name'
-        className='block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6'
+        ref={ref}
+        type={type}
+        name={label}
+        id={label}
+        className='bg-transparent block w-full before:placeholder:text-gold
+        checked:bg-blue-600 checked:border-transparent focus:border-transparent focus:outline-none focus:ring-2'
         placeholder={placeholder}
+        defaultValue={placeholder}
       />
     </div>
   );
-}
+});
+
+export default InputField;

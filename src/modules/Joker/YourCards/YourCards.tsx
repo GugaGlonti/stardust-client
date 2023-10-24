@@ -3,25 +3,29 @@ import { CardIDs } from '../../../assets/cards/__card.dictionary';
 
 interface YourCardsProps {
   cardIds: CardIDs[];
+  className?: string;
 }
 
-export default function YourCards({ cardIds }: YourCardsProps) {
+export default function YourCards({ cardIds, className, ...props }: YourCardsProps) {
   return (
     <>
-      <div className='h-32' />
       <div
-        className={`
+        className={`${className}
           flex
           justify-center
-          w-full
+          w-fit-content
           bg-window
           rounded-md
           shadow-xl
           p-2
-          flex-wrap
-        `}>
+          flex-shrink
+        `}
+        {...props}>
         {cardIds.map(cardId => (
-          <Card id={cardId} />
+          <Card
+            id={cardId}
+            onClick={() => {}}
+          />
         ))}
       </div>
     </>

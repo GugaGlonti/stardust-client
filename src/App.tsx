@@ -18,6 +18,7 @@ import MessageMain from './modules/Message/MessageMain/MessageMain';
 import MessagePageLayout from './Page-Layouts/MessagePageLayout';
 import MessageProfile, { messageProfileLoader } from './modules/Message/MessageProfile/MessageProfile';
 import CreateJokerGame from './modules/Joker/create-game/CreateGame';
+import GameLayout from './modules/Joker/GameLayout/GameLayout';
 
 //prettier-ignore
 const router = createBrowserRouter([
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
 
         { path: '', id: 'create-game', element: <CreateJokerGame /> },
 
-        { path: ':gameId', id: 'game', element: <h1>game</h1> }
+        { path: ':gameId', id: 'game', element: <GameLayout/> }
       ] },
 
       
