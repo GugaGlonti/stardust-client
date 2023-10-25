@@ -10,7 +10,8 @@ export default class ChatService {
   static async getChatIdentifiers(friends: string[], username: string): Promise<ChatIdentifier[]> {
     try {
       const preperation = friends.map(friend => ({ friend, username }));
-      return Promise.all(preperation.map(async ({ friend, username }) => (await axiosService.get(url + 'getChatIdentifier', { params: { friend, username } })).data as ChatIdentifier));
+      const chatIdentifiers = await Promise.all(preperation.map(async ({ friend, username }) => (await axiosService.get(url + 'getChatIdentifier', { params: { friend, username } })).data as ChatIdentifier));
+      return chatIdentifiers;
     } catch (error) {
       console.error('req failed | getChatIdentifiers | ChatService', error);
       return [];

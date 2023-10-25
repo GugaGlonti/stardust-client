@@ -26,12 +26,12 @@ export default function MessageAside() {
   useEffect(() => {
     (async () => {
       setChatIdentifiers(await ChatService.getChatIdentifiers(friends as string[], username as string));
+
       setLoading(false);
     })();
   }, [friends, username, refresh]);
 
   if (loading) return <h1 className='p-8'>loading...</h1>;
-  if (!chatIdentifiers.length) return <h1 className='p-8'>chats could not be fetched</h1>;
   if (!friends) return <div>you dont have any friends lmao</div>;
 
   return (
