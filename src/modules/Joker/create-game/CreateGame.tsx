@@ -12,7 +12,6 @@ export default function CreateGame() {
 
   async function createGameHandler() {
     const gameID = await JokerService.createGame(user.username);
-    if (!gameID) return console.error('gameID not found');
     navigate(`${gameID}`);
   }
 

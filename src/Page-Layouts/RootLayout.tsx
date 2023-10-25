@@ -7,6 +7,7 @@ import Footer from '../modules/Footer/Footer';
 
 import useLogin from '../hooks/useLogin';
 import SocketService, { socket } from '../services/socket.service';
+import JokerService from '../services/joker.service';
 
 export default function RootLayout() {
   useLogin();
@@ -42,6 +43,11 @@ export const loadProfileData: LoaderFunction = async () => {
       'Socket-ID': socket.id,
     });
   }, 200);
+
+  if (!(await JokerService.getGame())) {
+    localStorage.removeItem('joker-status');
+    localStorage.removeItem('joker-gameID');
+  }
 
   return me;
 };

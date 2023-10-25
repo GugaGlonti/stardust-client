@@ -17,6 +17,7 @@ export default function useLogin() {
   socket.connect();
   setTimeout(() => {
     SocketService.joinRoom(user.username);
+    SocketService.joinRoom(localStorage.getItem('joker-gameID') as string);
     localStorage.setItem('socket-id', socket.id);
   }, 200);
 }

@@ -4,25 +4,25 @@ import { CreateJokerGameDto, GameMode } from '../../../types/CreateJokerGameDto'
 import { useNavigate } from 'react-router';
 import JokerService from '../../../services/joker.service';
 import useLobbyPlayers from '../hooks/useLobbyPlayers';
+import SocketService from '../../../services/socket.service';
 
 export default function JokerLobby() {
   const navigate = useNavigate();
-  const createJoker = localStorage.getItem('joker-gameID') as string;
-  const players = useLobbyPlayers(createJoker);
+  const gameID = localStorage.getItem('joker-gameID') as string;
+  const players = useLobbyPlayers(gameID);
+
+  SocketService.boundTriggerToEvent('joker-start', () => {
+    localStorage.setItem('joker-status', 'inGame');
+    navigate(`/joker/${gameID}/game`);
+  });
 
   function handleSubmit({ gameMode, roundCount, penalty }: { gameMode: GameMode; roundCount: number; penalty: number }) {
     if (players.length !== 4) return console.error('not enough players');
-    const dto: CreateJokerGameDto = {
-      gameID: createJoker as string,
-      gameMode,
-      roundCount,
-      penalty,
-      players: players.join(','),
-    };
+    const dto: CreateJokerGameDto = { gameID, gameMode, roundCount, penalty, players: players.join(',') };
     JokerService.startGame(dto);
   }
 
-  if (!createJoker) {
+  if (!gameID) {
     navigate(`joker`);
     return null;
   }

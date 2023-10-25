@@ -8,11 +8,7 @@ export const socket: Socket = io('http://localhost:3000', {
 
 export default class SocketService {
   static async joinRoom(room: string | number) {
-    try {
-      socket.emit('joinRoom', room);
-    } catch (error) {
-      console.log("Can't join room");
-    }
+    socket.emit('joinRoom', room);
   }
 
   static async leaveRoom(room: string) {

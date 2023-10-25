@@ -1,14 +1,27 @@
 import { CardID } from '../assets/cards/__card.dictionary';
 import { CreateJokerGameDto } from '../types/CreateJokerGameDto';
-import SocketService from './socket.service';
+import SocketService, { socket } from './socket.service';
 
 import axiosService from './axios.instance';
 
 const url = 'http://localhost:3000/api/joker/';
 
 export default class JokerService {
+  static async getGame() {
+    try {
+      const gameID = localStorage.getItem('joker-gameID') as string;
+      if (!gameID) return null;
+      return (await axiosService.get(url + 'game', { params: { gameID } })).data;
+    } catch (error) {
+      return null;
+    }
+  }
+
   static async startGame(dto: CreateJokerGameDto) {
-    console.log('JokerService.startGame: dto = ', dto);
+    try {
+      localStorage.setItem('joker-status', 'inGame');
+      socket.emit('joker-start', dto);
+    } catch (error) {}
   }
 
   static async createGame(username: string) {
@@ -16,6 +29,7 @@ export default class JokerService {
       const gameID = Date.now().toString();
       await SocketService.createJoker(gameID, username);
       localStorage.setItem('joker-gameID', gameID);
+      localStorage.setItem('joker-status', 'lobby');
       return gameID;
     } catch (error) {
       console.error(error);
@@ -27,6 +41,7 @@ export default class JokerService {
     try {
       await SocketService.joinJoker(gameID, username);
       localStorage.setItem('joker-gameID', gameID);
+      localStorage.setItem('joker-status', 'lobby');
       return true;
     } catch (error) {
       console.error(error);
@@ -39,8 +54,9 @@ export default class JokerService {
       const gameID = localStorage.getItem('joker-gameID') as string;
       await SocketService.leaveJoker(gameID, username);
       localStorage.removeItem('joker-gameID');
+      localStorage.removeItem('joker-status');
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return false;
     }
   }
@@ -48,15 +64,7 @@ export default class JokerService {
   // when game has started
   static async leaveGame(gameID: string) {}
 
-  static async deleteGame(gameID: string) {
-    try {
-      await axiosService.delete(url + 'delete', { params: { gameID } });
-      localStorage.removeItem('joker-gameID');
-      await SocketService.leaveRoom(gameID);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  static async deleteGame(gameID: string) {}
 
   static async getLobbyFriends(gameID: string) {
     try {
