@@ -1,3 +1,4 @@
+import useCurrentUser from '../../../hooks/useCurrentUser';
 import NotificationService from '../../../services/notification.service';
 import { User } from '../../../types/User';
 
@@ -13,10 +14,11 @@ interface ProfileHeaderProps {
 }
 
 export default function ProfileHeader({ profileData, className, ownProfile, isFriend, loggedIn, ...props }: ProfileHeaderProps) {
+  const currentUser = useCurrentUser();
   const { username, firstName, lastName } = profileData as User;
 
   function sendFriendRequest() {
-    NotificationService.sendFriendRequest(username);
+    NotificationService.sendFriendRequest(currentUser.username, username);
   }
 
   // SENT YOU A FRIEND REQUEST

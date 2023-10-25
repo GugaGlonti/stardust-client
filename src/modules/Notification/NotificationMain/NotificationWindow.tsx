@@ -1,15 +1,13 @@
-import { useContext } from 'react';
-
 import NotificationHeader from './components/NotificationHeader';
 import NotificationMain from './components/NotificationMain';
-import { authContext } from '../../../store/auth.provider';
+import useNotificationCount from '../../../hooks/useNotificationCount';
 
 interface NotificationMainProps {}
 
 export default function NotificationWindow({ ...props }: NotificationMainProps) {
-  const context = useContext(authContext);
+  // const notificationCount = useNotificationCount();
 
-  const notificationCount = context.loggedInUser?.notificationCount as number;
+  const notificationCount = useNotificationCount();
 
   return (
     <div

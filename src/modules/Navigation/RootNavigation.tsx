@@ -5,11 +5,14 @@ import SearchBar from '../SearchBar/SearchBar';
 import SignedInNavigation from './components/SignedInNavigation';
 import SignedOutNavigation from './components/SignedOutNavigation';
 import useCurrentUser from '../../hooks/useCurrentUser';
+import useNotificationCount from '../../hooks/useNotificationCount';
 
 export default function RootNavigation() {
   const loggedInUser = useCurrentUser();
   const createJoker = localStorage.getItem('joker-gameID');
-  const { username, notificationCount } = loggedInUser;
+  const { username } = loggedInUser;
+
+  const notificationCount = useNotificationCount();
 
   return (
     <>
