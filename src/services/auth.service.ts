@@ -35,12 +35,9 @@ export default class AuthService {
 
   static async me(): Promise<User | undefined> {
     try {
-      const { data } = await axiosService.get('http://localhost:3000/api/auth/me');
-      if (!data) throw new Error('not data retrieved');
-
-      return data;
+      return (await axiosService.get('http://localhost:3000/api/auth/me')).data;
     } catch (error) {
-      console.error(error);
+      console.error('Not logged in');
     }
   }
 

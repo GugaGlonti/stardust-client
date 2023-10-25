@@ -8,6 +8,7 @@ import useCurrentUser from '../../hooks/useCurrentUser';
 
 export default function RootNavigation() {
   const loggedInUser = useCurrentUser();
+  const createJoker = localStorage.getItem('joker-gameID');
   const { username, notificationCount } = loggedInUser;
 
   return (
@@ -19,7 +20,7 @@ export default function RootNavigation() {
         {/** @Navigation left */}
         <div className='flex justify-between gap-4 h-full'>
           <NavButton to=''>Home</NavButton>
-          <NavButton to='/joker'>Joker</NavButton>
+          {!!createJoker ? <NavButton to={`/joker/${createJoker}`}>Joker</NavButton> : <NavButton to='/joker'>Joker</NavButton>}
           <NavButton to='/roulette'>Roulette</NavButton>
         </div>
 

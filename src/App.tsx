@@ -17,8 +17,9 @@ import { AuthProvider } from './store/auth.provider';
 import MessageMain from './modules/Message/MessageMain/MessageMain';
 import MessagePageLayout from './Page-Layouts/MessagePageLayout';
 import MessageProfile, { messageProfileLoader } from './modules/Message/MessageProfile/MessageProfile';
-import CreateJokerGame from './modules/Joker/create-game/CreateGame';
+import JokerLobby from './modules/Joker/create-game/Lobby';
 import GameLayout from './modules/Joker/GameLayout/GameLayout';
+import CreateGame from './modules/Joker/create-game/CreateGame';
 
 //prettier-ignore
 const router = createBrowserRouter([
@@ -34,9 +35,12 @@ const router = createBrowserRouter([
       /** @page Joker Game */
       { path: 'joker', id: 'joker', element: <JokerPageLayout />, children: [
 
-        { path: '', id: 'create-game', element: <CreateJokerGame /> },
 
-        { path: ':gameId', id: 'game', element: <GameLayout/> }
+        { path: '', id: 'joker-create', element: <CreateGame /> },
+
+        { path: ':gameId', id: 'joker-lobby', element: <JokerLobby /> },
+
+        { path: 'game/:gameId', id: 'game', element: <GameLayout/> }
       ] },
 
       

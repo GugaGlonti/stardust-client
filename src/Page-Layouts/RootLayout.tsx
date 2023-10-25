@@ -5,10 +5,8 @@ import AuthService from '../services/auth.service';
 import RootNavigation from '../modules/Navigation/RootNavigation';
 import Footer from '../modules/Footer/Footer';
 
-import NotificationService from '../services/notification.service';
-import UserService from '../services/user.service';
 import useLogin from '../hooks/useLogin';
-import SocketService from '../services/socket.service';
+import SocketService, { socket } from '../services/socket.service';
 
 export default function RootLayout() {
   useLogin();
@@ -24,17 +22,26 @@ export default function RootLayout() {
 
 export const loadProfileData: LoaderFunction = async () => {
   console.warn('fetching profile data...');
+  const me = await AuthService.me();
 
-  const response = await Promise.all([AuthService.me(), NotificationService.getMyNotificationCount()]);
-  if (!response[0]) return null;
+  if (!me) {
+    localStorage.removeItem('socket-id');
+    socket.disconnect();
+    return null;
+  }
 
-  const _friends = await UserService.getFriends(response[0].username);
-  const friends = _friends.map(friend => friend.username);
-  const me = { ...response[0], notificationCount: response[1], friends };
+  socket.connect();
+  setTimeout(() => {
+    SocketService.joinRoom(me.username);
+    localStorage.setItem('socket-id', socket.id);
+  }, 200);
 
-  await SocketService.leaveRooms();
-  await SocketService.joinRoom(me.username);
-  if (!me) return null;
+  setTimeout(() => {
+    console.table({
+      Username: me.username,
+      'Socket-ID': socket.id,
+    });
+  }, 200);
 
   return me;
 };

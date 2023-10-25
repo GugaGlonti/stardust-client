@@ -12,7 +12,7 @@ export default function PlayerReel({ players }: PlayerReelProps) {
   return (
     <div className={`${window} ${containerClasses} m-auto max-w-screen-lg w-full h-full`}>
       <ColorBar className='rounded-t-md' />
-      <h1 className='m-4'>Invite players on their page...</h1>
+      <h1 className='m-4'>Waiting for other players...</h1>
       <ul className='grid grid-cols-4 p-4 gap-8'>
         {players.map((player, i) => (
           <Player
@@ -22,7 +22,6 @@ export default function PlayerReel({ players }: PlayerReelProps) {
         ))}
         {players.length < 4 && Array.from({ length: 4 - players.length }).map((_, i) => <NoPlayer key={i} />)}
       </ul>
-      <ColorBar className='rounded-b-md' />
     </div>
   );
 }

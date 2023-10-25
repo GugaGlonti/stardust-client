@@ -16,7 +16,7 @@ const InputField = forwardRef((props: InputFieldProps, ref: ForwardedRef<HTMLInp
       {!!label && (
         <label
           htmlFor={label}
-          className='pl-4 mr-4'>
+          className='pl-4 mr-4 w-full'>
           {label}
         </label>
       )}
