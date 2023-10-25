@@ -17,7 +17,7 @@ export default function ProfileHeaderLeftSide({ firstName, lastName, username, .
           <h1>{firstName}</h1>
           <h1>{lastName}</h1>
         </div>
-        <h1 className='text-green-400'>@{username}</h1>P
+        <h1 className='text-green-400'>@{username}</h1>
       </div>
     </div>
   );
