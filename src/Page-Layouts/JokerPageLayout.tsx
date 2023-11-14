@@ -21,8 +21,6 @@ export default function JokerPageLayout() {
 
 export const GameLoader: LoaderFunction = async () => {
   const game = await JokerService.getGame();
-  if (!game) {
-    return null;
-  }
+  if (!game) return null;
   return game;
 };
