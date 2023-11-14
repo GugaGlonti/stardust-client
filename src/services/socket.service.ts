@@ -3,7 +3,11 @@ import { Message } from '../types/Message';
 
 export const socket: Socket = io('http://localhost:3000', {
   transports: ['websocket'],
-  autoConnect: false,
+  autoConnect: true,
+  reconnection: true,
+  reconnectionDelay: 500,
+  reconnectionAttempts: 10,
+  forceNew: true,
 });
 
 export default class SocketService {
@@ -21,6 +25,10 @@ export default class SocketService {
 
   static async boundTriggerToEvent(event: string, triggerRefresh: any) {
     socket.on(event, () => triggerRefresh(Date.now()));
+  }
+
+  static async boundFunctionToEvent(event: string, func: any) {
+    socket.on(event, func);
   }
 
   /** ==================== // @messages // ==================== */
@@ -45,5 +53,9 @@ export default class SocketService {
 
   static async leaveJoker(gameID: string, username: string) {
     socket.emit('joker-leave', gameID, username);
+  }
+
+  static async playCard(gameID: string, cardID: string, username: string) {
+    socket.emit('joker-play-card', gameID, cardID, username);
   }
 }

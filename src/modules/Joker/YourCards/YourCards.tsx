@@ -1,5 +1,7 @@
 import Card from '../cards/Card';
 import { CardID } from '../../../assets/cards/__card.dictionary';
+import JokerService from '../../../services/joker.service';
+import useCurrentUser from '../../../hooks/useCurrentUser';
 
 interface YourCardsProps {
   cardIds: CardID[];
@@ -7,6 +9,8 @@ interface YourCardsProps {
 }
 
 export default function YourCards({ cardIds, className, ...props }: YourCardsProps) {
+  const { username } = useCurrentUser();
+
   return (
     <>
       <div
@@ -25,7 +29,7 @@ export default function YourCards({ cardIds, className, ...props }: YourCardsPro
           <Card
             key={cardId}
             id={cardId}
-            onClick={() => {}}
+            onClick={() => JokerService.playCard(cardId, username)}
           />
         ))}
       </div>

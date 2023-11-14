@@ -3,7 +3,7 @@ export type GameMode = 'classical' | 'nines';
 export interface CreateJokerGameDto {
   gameID: string;
   gameMode: GameMode;
-  roundCount: number;
+  roundAmount: number;
   penalty: number;
   players: string;
 

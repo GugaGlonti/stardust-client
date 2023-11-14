@@ -7,8 +7,12 @@ import SignedOutNavigation from './components/SignedOutNavigation';
 import useCurrentUser from '../../hooks/useCurrentUser';
 import useNotificationCount from '../../hooks/useNotificationCount';
 import useJokerLink from './hooks/useJokerLink';
+import Button from '../../components/Button';
+import { useNavigate } from 'react-router';
 
 export default function RootNavigation() {
+  const navigate = useNavigate();
+
   const jokerLink = useJokerLink();
   const { username } = useCurrentUser();
   const notificationCount = useNotificationCount();
@@ -24,6 +28,15 @@ export default function RootNavigation() {
           <NavButton to=''>Home</NavButton>
           <NavButton to={jokerLink}>Joker</NavButton>
           <NavButton to='/roulette'>Roulette</NavButton>
+          <Button
+            variant='test'
+            onClick={() => {
+              localStorage.removeItem('joker-gameID');
+              localStorage.removeItem('joker-status');
+              navigate('/joker');
+            }}>
+            REMOVE JOKER
+          </Button>
         </div>
 
         {/** @Navigation middle */}

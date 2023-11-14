@@ -10,8 +10,7 @@ export default class NotificationService {
       if (!notifications) return [];
       return notifications;
     } catch (error) {
-      console.error('req failed | getMyNotifications | UserService');
-      console.error(error);
+      console.error('req failed | getMyNotifications | UserService', error);
       return [];
     }
   }
@@ -20,8 +19,7 @@ export default class NotificationService {
     try {
       return (await axiosService.get(url + 'count')).data;
     } catch (error) {
-      console.error('req failed | getMyNotificationCount | UserService');
-      console.error(error);
+      console.error('req failed | getMyNotificationCount | UserService', error);
       return 0;
     }
   }
@@ -30,8 +28,7 @@ export default class NotificationService {
     try {
       socket.emit('sendFriendRequest', me, friend);
     } catch (error) {
-      console.error('req failed | addFriend | UserService');
-      console.error(error);
+      console.error('socket failed | sendFriendRequest | UserService', error);
     }
   }
 
@@ -39,8 +36,7 @@ export default class NotificationService {
     try {
       socket.emit('acceptFriendRequest', notificationId);
     } catch (error) {
-      console.error('req failed | acceptFriendRequest | UserService');
-      console.error(error);
+      console.error('socket failed | acceptFriendRequest | UserService', error);
     }
   }
 
@@ -49,8 +45,7 @@ export default class NotificationService {
     try {
       return (await axiosService.put(url + 'declineFriendRequest', { notificationId })).data;
     } catch (error) {
-      console.error('req failed | declineFriendRequest | UserService');
-      console.error(error);
+      console.error('req failed | declineFriendRequest | UserService', error);
     }
   }
 
@@ -58,8 +53,7 @@ export default class NotificationService {
     try {
       return (await axiosService.delete(url + notificationId)).data;
     } catch (error) {
-      console.error('req failed | deleteNotification | UserService');
-      console.error(error);
+      console.error('req failed | deleteNotification | UserService', error);
     }
   }
 }

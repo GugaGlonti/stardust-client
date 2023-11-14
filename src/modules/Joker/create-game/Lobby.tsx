@@ -16,9 +16,9 @@ export default function JokerLobby() {
     navigate(`/joker/${gameID}/game`);
   });
 
-  function handleSubmit({ gameMode, roundCount, penalty }: { gameMode: GameMode; roundCount: number; penalty: number }) {
+  function handleSubmit({ gameMode, roundCount: roundAmount, penalty }: { gameMode: GameMode; roundCount: number; penalty: number }) {
     if (players.length !== 4) return console.error('not enough players');
-    const dto: CreateJokerGameDto = { gameID, gameMode, roundCount, penalty, players: players.join(',') };
+    const dto: CreateJokerGameDto = { gameID, gameMode, roundAmount, penalty, players: players.join(',') };
     JokerService.startGame(dto);
   }
 

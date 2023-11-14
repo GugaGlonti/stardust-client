@@ -9,6 +9,8 @@ const url = 'http://localhost:3000/api/users/';
 export default class UserService {
   static async getProfile(identifier: string | number) {
     try {
+      console.log(identifier);
+      console.log('here');
       return (await axiosService.get(url + identifier)).data as User;
     } catch (error) {
       console.error('req failed | getProfile | UserService', error);

@@ -59,7 +59,7 @@ export default function GameSetup({ onSubmit, ...props }: GameSetupProps) {
           <SelectField
             ref={gameModeRef}
             label='Select Gamemode'
-            options={['Classical', 'Nines']}
+            options={['Classical', 'Nines', 'test']}
           />
 
           <InputField

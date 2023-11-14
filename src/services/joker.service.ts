@@ -3,6 +3,7 @@ import { CreateJokerGameDto } from '../types/CreateJokerGameDto';
 import SocketService, { socket } from './socket.service';
 
 import axiosService from './axios.instance';
+import { JokerGame } from '../modules/Joker/JokerGame';
 
 const url = 'http://localhost:3000/api/joker/';
 
@@ -11,7 +12,7 @@ export default class JokerService {
     try {
       const gameID = localStorage.getItem('joker-gameID') as string;
       if (!gameID) return null;
-      return (await axiosService.get(url + 'game', { params: { gameID } })).data;
+      return (await axiosService.get(url + 'game', { params: { gameID } })).data as JokerGame;
     } catch (error) {
       return null;
     }
@@ -58,6 +59,15 @@ export default class JokerService {
     } catch (error) {
       console.error(error);
       return false;
+    }
+  }
+
+  static async playCard(cardID: CardID, username: string) {
+    try {
+      const gameID = localStorage.getItem('joker-gameID') as string;
+      await SocketService.playCard(gameID, cardID, username);
+    } catch (error) {
+      console.error(error);
     }
   }
 

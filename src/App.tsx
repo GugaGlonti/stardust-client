@@ -40,7 +40,7 @@ const router = createBrowserRouter([
 
         { path: ':gameId', id: 'joker-lobby', element: <JokerLobby /> },
 
-        { path: ':gameId/game', id: 'game', element: <GameLayout/> }
+        { path: ':gameId/game', id: 'game', element: <GameLayout/>, loader: GameLoader }
       ] },
 
       
