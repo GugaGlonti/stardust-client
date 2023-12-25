@@ -1,5 +1,5 @@
 import axiosService from './axios.instance';
-import { socket } from './socket.service';
+import { socket } from '../socket';
 
 const url = 'http://localhost:3000/api/notifications/';
 
