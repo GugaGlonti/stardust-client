@@ -21,4 +21,15 @@ export default class ChatService {
   static async getchatIdentifier(friend: string, username: string): Promise<ChatIdentifier> {
     return this.getChatIdentifiers([friend], username).then(chatIdentifiers => chatIdentifiers[0]);
   }
+
+  static async getChatMessages(chatIdentifier: ChatIdentifier): Promise<string[]> {
+    try {
+      const messages = (await axiosService.get(url + 'getChatMessages', { params: { chatIdentifier } })).data;
+      if (!messages) return [];
+      return messages;
+    } catch (error) {
+      console.error('req failed | getChatMessages | ChatService', error);
+      return [];
+    }
+  }
 }
