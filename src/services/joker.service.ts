@@ -1,6 +1,7 @@
 import { CardID } from '../assets/cards/__card.dictionary';
 import { CreateJokerGameDto } from '../types/CreateJokerGameDto';
-import SocketService, { socket } from './socket.service';
+import SocketService from './socket.service';
+import { socket } from '../socket';
 
 import axiosService from './axios.instance';
 import { JokerGame } from '../modules/Joker/JokerGame';

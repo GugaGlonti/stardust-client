@@ -5,7 +5,8 @@ import AuthService from '../services/auth.service';
 import RootNavigation from '../modules/Navigation/RootNavigation';
 import Footer from '../modules/Footer/Footer';
 
-import SocketService, { socket } from '../services/socket.service';
+import SocketService from '../services/socket.service';
+import { socket } from '../socket';
 import { authContext } from '../store/auth.provider';
 import { useContext, useEffect } from 'react';
 import { User } from '../types/User';
@@ -14,9 +15,7 @@ export default function RootLayout() {
   const user = useLoaderData() as User;
   const { setLoggedInUser } = useContext(authContext);
 
-  useEffect(() => {
-    setLoggedInUser(user);
-  }, [user, setLoggedInUser]);
+  useEffect(() => setLoggedInUser(user), [user, setLoggedInUser]);
 
   return (
     <>

@@ -1,14 +1,5 @@
-import { Socket, io } from 'socket.io-client';
 import { Message } from '../types/Message';
-
-export const socket: Socket = io('http://localhost:3000', {
-  transports: ['websocket'],
-  autoConnect: true,
-  reconnection: true,
-  reconnectionDelay: 500,
-  reconnectionAttempts: 10,
-  forceNew: true,
-});
+import { socket } from '../socket';
 
 export default class SocketService {
   static async joinRoom(room: string | number) {

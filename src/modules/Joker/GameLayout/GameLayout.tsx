@@ -4,12 +4,12 @@ import YourCards from '../YourCards/YourCards';
 import ProfilePicture from '../../../components/ProfilePicture';
 import Table from './Table';
 import JokerService from '../../../services/joker.service';
-import SocketService from '../../../services/socket.service';
 import { JokerGame } from '../JokerGame';
 import useCurrentUser from '../../../hooks/useCurrentUser';
 import { CardID } from '../../../assets/cards/__card.dictionary';
 import TimeBar from '../TimeBar';
 import { useLoaderData, useNavigate } from 'react-router';
+import { socket } from '../../../socket';
 
 export default function GameLayout() {
   const navigate = useNavigate();
@@ -28,16 +28,18 @@ export default function GameLayout() {
 
   const [game, setGame] = useState<JokerGame>(useLoaderData() as JokerGame);
 
-  SocketService.boundFunctionToEvent('joker-start', async () => {
-    console.log('JOKER_START');
-    navigate(`/joker/${game.gameID}/game`);
-  });
+  useEffect(() => {
+    socket.on('joker-start', () => {
+      console.log('JOKER_START');
+      navigate(`/joker/${game.gameID}/game`);
+    });
 
-  SocketService.boundFunctionToEvent('joker-update', async () => {
-    const game = (await JokerService.getGame()) as JokerGame;
-    setGame(game);
-    console.log('JOKER_UPDATE');
-  });
+    socket.on('joker-update', async () => {
+      const game = (await JokerService.getGame()) as JokerGame;
+      setGame(game);
+      console.log('JOKER_UPDATE');
+    });
+  }, []);
 
   console.log('game', game);
 
